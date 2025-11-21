@@ -1,0 +1,25 @@
+github_organization: gazebosim
+repositories:
+- branches:
+  - branch: main
+    enforce_admins: false
+    require_conversation_resolution: false
+    require_signed_commits: false
+    required_linear_history: false
+    required_pull_request_reviews:
+      dismiss_stale_reviews: false
+      require_code_owner_reviews: false
+      require_last_push_approval: false
+      required_approving_review_count: 1
+    required_status_checks:
+      contexts:
+      - DCO
+      - gz_common-ci-pr_any-homebrew-amd64
+      - gz_common-ci-pr_any-noble-amd64
+      - Ubuntu Noble CI
+      - Validate package.xml
+      - gz_common-pr-cnlwin
+      strict: true
+  description: Gazebo gz-common
+  name: gz-common
+  visibility: public
