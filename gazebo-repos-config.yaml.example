@@ -1,6 +1,7 @@
 github_organization: gazebosim
 repositories:
-- branches:
+- name: gz-common
+  branches:
   - branch: main
     enforce_admins: false
     require_conversation_resolution: false
@@ -20,6 +21,3 @@ repositories:
       - Validate package.xml
       - gz_common-pr-cnlwin
       strict: true
-  description: Gazebo gz-common
-  name: gz-common
-  visibility: public

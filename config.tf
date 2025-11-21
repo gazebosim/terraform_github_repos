@@ -3,13 +3,10 @@ locals {
   config_file = fileexists(var.config_file_path) ? file(var.config_file_path) : "{}"
   config      = yamldecode(local.config_file)
 
-  # Transform repositories from YAML into the format needed for github_repository resource
+  # Extract repository names (only used for data source lookup)
   repositories = {
     for repo in lookup(local.config, "repositories", []) :
-    repo.name => {
-      description = lookup(repo, "description", "")
-      visibility  = lookup(repo, "visibility", "public")
-    }
+    repo.name => {}
   }
 
   # Transform branch protection rules from YAML into flat map

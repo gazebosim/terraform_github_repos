@@ -198,8 +198,6 @@ def generate_yaml_config(repos_config: Dict) -> str:
     for repo_name in sorted(repos_config.keys()):
         repo_data = {
             "name": repo_name,
-            "description": f"Gazebo {repo_name}",
-            "visibility": "public",
             "branches": []
         }
         

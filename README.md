@@ -93,8 +93,6 @@ If you still want full repository management:
    github_organization: gazebosim
    repositories:
      - name: my-repo
-       description: My repository
-       visibility: public
        branches:
          - branch: main
            enforce_admins: false
@@ -147,8 +145,6 @@ github_organization: gazebosim  # GitHub org or username
 
 repositories:
   - name: gz-common              # Repository name
-    description: Gazebo gz-common # Repository description
-    visibility: public            # public or private
     branches:                     # List of branches to protect
       - branch: main              # Branch name/pattern
         enforce_admins: false
@@ -176,8 +172,6 @@ You can protect multiple branches per repository:
 ```yaml
 repositories:
   - name: gz-sim
-    description: Gazebo gz-sim
-    visibility: public
     branches:
       - branch: main
         enforce_admins: false
