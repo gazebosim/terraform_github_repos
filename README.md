@@ -36,11 +36,12 @@ The current setup uses `data.github_repository` which:
 
 ### For Full Repository Management (Advanced)
 
-If you want Terraform to fully manage repositories:
-1. Uncomment the `github_repository` resource in `main.tf`
-2. Import existing repositories: `./scripts/import-repositories.sh gazebo-repos-config.yaml`
-3. Update `branch_protection.tf` and `outputs.tf` to use `github_repository.repos` instead of `data.github_repository.repos`
-4. Terraform will then manage all repository settings
+**Not recommended for existing repositories.** The current setup (data source + branch protection only) is the safest approach for managing existing Gazebo repositories.
+
+If you still want full repository management:
+1. Add `resource "github_repository"` blocks to `main.tf`
+2. Import existing repositories manually: `terraform import 'github_repository.repos["repo-name"]' repo-name`
+3. Update `branch_protection.tf` and `outputs.tf` to reference the resource
 
 **⚠️ Warning**: Full management means Terraform could modify or delete repositories if misconfigured!
 
@@ -115,17 +116,22 @@ If you want Terraform to fully manage repositories:
    terraform init
    ```
 
-2. **Review the plan**
+2. **Import existing branch protection rules** (first time only)
+   ```bash
+   ./scripts/import-branch-protection.sh gazebo-repos-config.yaml
+   ```
+
+3. **Review the plan**
    ```bash
    terraform plan
    ```
 
-3. **Apply the configuration**
+4. **Apply the configuration**
    ```bash
    terraform apply
    ```
 
-4. **Destroy resources (when needed)**
+5. **To remove branch protection** (if needed)
    ```bash
    terraform destroy
    ```
