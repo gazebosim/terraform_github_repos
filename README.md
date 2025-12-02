@@ -210,7 +210,3 @@ Or run the Python script directly:
 pip install -r requirements.txt
 python scripts/generate_gazebo_config.py
 ```
-
-## License
-
-MIT
