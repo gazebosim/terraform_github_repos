@@ -9,7 +9,7 @@ cd "$SCRIPT_DIR/.."
 echo "Installing Python dependencies..."
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -q pyyaml
+pip install -q -r requirements.txt
 
 echo ""
 echo "Generating Gazebo repository configurations..."
