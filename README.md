@@ -12,7 +12,7 @@ This Terraform project manages GitHub repositories and their branch protection r
 - GitHub account with appropriate permissions
 - GitHub Personal Access Token with `repo` and `admin:org` scopes
 
-## Important: Managing Existing vs New Repositories
+## Important: only branch protection modifications
 
 **By default, this configuration manages EXISTING repositories** (read-only reference). It only manages:
 - ✅ Branch protection rules
