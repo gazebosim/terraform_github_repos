@@ -1,14 +1,10 @@
-# GitHub Repository Management with Terraform
+# GitHub Branch Protection Management with Terraform
 
 This Terraform project manages GitHub repositories and their branch protection rules using the GitHub provider.
 
 ## Features
 
-- Create and manage GitHub repositories
 - Configure branch protection rules
-- Customize repository settings (issues, projects, wiki, etc.)
-- Configure merge strategies and auto-merge options
-- Set up vulnerability alerts and topics
 
 ## Prerequisites
 
@@ -27,29 +23,11 @@ This Terraform project manages GitHub repositories and their branch protection r
 - ❌ Modify repository settings (description, visibility, etc.)
 - ❌ Delete repositories
 
-### For Existing Repositories (Default - Recommended)
-
-The current setup uses `data.github_repository` which:
-- References existing repositories without managing them
-- Only manages branch protection rules
-- Safe for production use - won't accidentally modify/delete repos
-
-### For Full Repository Management (Advanced)
-
-**Not recommended for existing repositories.** The current setup (data source + branch protection only) is the safest approach for managing existing Gazebo repositories.
-
-If you still want full repository management:
-1. Add `resource "github_repository"` blocks to `main.tf`
-2. Import existing repositories manually: `terraform import 'github_repository.repos["repo-name"]' repo-name`
-3. Update `branch_protection.tf` and `outputs.tf` to reference the resource
-
-**⚠️ Warning**: Full management means Terraform could modify or delete repositories if misconfigured!
-
 ## Setup
 
 1. **Create a GitHub Personal Access Token**
 
-   **Option A: Fine-Grained Personal Access Token (Recommended)**
+   **Option A: Fine-Grained Personal Access Token**
    
    Fine-grained tokens provide better security with granular permissions:
    
@@ -65,28 +43,19 @@ If you still want full repository management:
      - **Permissions**:
        - Repository permissions → **Administration**: Read and write (for branch protection)
        - Repository permissions → **Contents**: Read-only (for reading configs)
-       - Repository permissions → **Metadata**: Read-only (automatically included)
    - Generate and copy the token (format: `github_pat_...`)
-
-   **Option B: Classic Personal Access Token**
-   
-   - Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
-   - Generate new token with:
-     - `repo` scope (required for branch protection)
-     - `admin:org` scope (if managing org repositories)
-   - Save the token securely (format: `ghp_...`)
 
 2. **Set environment variable**
    ```bash
    export GITHUB_TOKEN="your_github_token"
-   ```
+   ```   
 
 3. **Generate or create a configuration file**
 
-   For Gazebo repositories:
+   For Gazebo repositories, this will generate the `gazebo-repos-config.yaml` for all the collections in gazebodistro.
    ```bash
    ./scripts/update-gazebo-repos.sh
-   ```
+   ```   
 
    Or manually create `gazebo-repos-config.yaml`:
    ```yaml
@@ -109,6 +78,9 @@ If you still want full repository management:
 
 ## Usage
 
+The workflow will use `gazebo-repos-config.yaml` file as input for the configurations and
+terraform for syncing the configurations in that yaml file into the github repositories:
+
 1. **Initialize Terraform**
    ```bash
    terraform init
@@ -119,7 +91,7 @@ If you still want full repository management:
    ./scripts/import-branch-protection.sh gazebo-repos-config.yaml
    ```
 
-3. **Review the plan**
+3. **Review the plan** (no changes done in this step)
    ```bash
    terraform plan
    ```
@@ -184,23 +156,6 @@ repositories:
         # ... different protection rules ...
 ```
 
-## Variables
-
-| Name | Description | Type | Required | Default |
-|------|-------------|------|----------|------|
-| `config_file_path` | Path to YAML configuration file | string | No | `gazebo-repos-config.yaml` |
-| `github_organization` | GitHub org (overrides config file) | string | No | From config file |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| `repository_ids` | Map of repository names to their IDs |
-| `repository_full_names` | Map of repository names to their full names |
-| `repository_urls` | Map of repository names to their HTML URLs |
-| `repository_ssh_clone_urls` | Map of repository names to their SSH clone URLs |
-| `repository_http_clone_urls` | Map of repository names to their HTTP clone URLs |
-
 ## Gazebo Repositories Automation
 
 This repository includes automation to manage all Gazebo repositories from the [gazebo-tooling/gazebodistro](https://github.com/gazebo-tooling/gazebodistro) collection files.
@@ -255,16 +210,6 @@ Or run the Python script directly:
 pip install -r requirements.txt
 python scripts/generate_gazebo_config.py
 ```
-
-### GitHub Actions Workflow
-
-The repository includes a workflow (`.github/workflows/update-gazebo-config.yml`) that:
-- Runs daily at 2 AM UTC (configurable via cron schedule)
-- Can be triggered manually via workflow_dispatch
-- Automatically creates a pull request when changes are detected
-- Labels PRs as `automated` and `configuration`
-
-This ensures your Terraform configuration stays synchronized with the gazebodistro collection files and current protection rules.
 
 ## License
 
