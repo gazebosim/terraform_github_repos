@@ -1,7 +1,7 @@
 variable "github_organization" {
   description = "GitHub organization or user account name. Overrides value from config file if set."
   type        = string
-  default     = "j-rivero"
+  default     = "gazebosim"
 }
 
 variable "config_file_path" {
