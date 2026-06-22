@@ -52,7 +52,7 @@ This Terraform project manages GitHub repositories and their branch protection r
 
 3. **Generate or create a configuration file**
 
-   For Gazebo repositories, this will generate the `gazebo-repos-config.yaml` for all the collections in gazebodistro.
+   For Gazebo repositories, this will generate the `gazebo-repos-config.yaml` for the active collections in gazebodistro (those listed in release-tools' `gz-collections.yaml`).
    ```bash
    ./scripts/update-gazebo-repos.sh
    ```   
@@ -191,7 +191,7 @@ repositories:
 ### Automatic Updates
 
 The Python script automatically:
-1. Fetches all `collection-*.yaml` files from gazebodistro
+1. Fetches the active collections from release-tools' [`gz-collections.yaml`](https://github.com/gazebo-tooling/release-tools/blob/master/jenkins-scripts/dsl/gz-collections.yaml) and parses only the matching `collection-<name>.yaml` files from gazebodistro
 2. Extracts all `gz-*` and `sdformat` repositories with their branch versions
 3. Retrieves current branch protection rules from each repository branch
 4. Generates `gazebo-repos-config.yaml` with the complete configuration

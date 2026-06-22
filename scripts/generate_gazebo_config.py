@@ -4,6 +4,7 @@ Fetch Gazebo repositories from gazebodistro collection files and generate
 a YAML configuration with their branches and branch protection rules.
 """
 
+import base64
 import json
 import subprocess
 import sys
@@ -14,6 +15,11 @@ from typing import Dict, List, Set, Tuple
 GAZEBODISTRO_REPO = "gazebo-tooling/gazebodistro"
 GAZEBODISTRO_BRANCH = "master"
 GITHUB_ORG = "gazebosim"
+
+# Source of truth for which collections are active. Only collection-*.yaml
+# files matching an active collection name are parsed.
+RELEASE_TOOLS_REPO = "gazebo-tooling/release-tools"
+GZ_COLLECTIONS_PATH = "jenkins-scripts/dsl/gz-collections.yaml"
 
 
 def run_command(cmd: List[str], check=True) -> str:
@@ -34,20 +40,39 @@ def run_command(cmd: List[str], check=True) -> str:
 
 
 def fetch_collection_files() -> List[str]:
-    """Fetch list of collection-*.yaml files from gazebodistro."""
+    """Fetch list of active collection-*.yaml files from gazebodistro.
+
+    Restricts the discovered collection files to the active collections defined
+    in release-tools' gz-collections.yaml. A collection named ``<name>`` maps to
+    the gazebodistro file ``collection-<name>.yaml``.
+    """
     print("Fetching collection files from gazebodistro...")
-    
+
     # List files in the root directory
     output = run_command([
         "gh", "api",
         f"repos/{GAZEBODISTRO_REPO}/contents",
         "-q", ".[].name"
     ])
-    
+
     files = output.split('\n')
-    collection_files = [f for f in files if f.startswith('collection-') and f.endswith('.yaml')]
-    
-    print(f"Found {len(collection_files)} collection files: {', '.join(collection_files)}")
+    discovered = [f for f in files if f.startswith('collection-') and f.endswith('.yaml')]
+
+    # Keep only the collection files that correspond to an active collection.
+    active_names = fetch_active_collection_names()
+    active_files = {f"collection-{name}.yaml" for name in active_names}
+    collection_files = sorted(f for f in discovered if f in active_files)
+
+    # Warn (and skip) for any active collection without a gazebodistro file.
+    missing = sorted(name for name in active_names
+                     if f"collection-{name}.yaml" not in discovered)
+    for name in missing:
+        print(f"  WARNING: active collection '{name}' has no "
+              f"collection-{name}.yaml in {GAZEBODISTRO_REPO}, skipping")
+
+    print(f"Found {len(collection_files)} active collection files "
+          f"(filtered from {len(discovered)} discovered): "
+          f"{', '.join(collection_files)}")
     return collection_files
 
 
@@ -58,10 +83,44 @@ def fetch_file_content(filename: str) -> str:
         f"repos/{GAZEBODISTRO_REPO}/contents/{filename}",
         "-q", ".content"
     ])
-    
+
     # Decode base64 content
-    import base64
     return base64.b64decode(output).decode('utf-8')
+
+
+def fetch_active_collection_names() -> Set[str]:
+    """Fetch the set of active collection names from release-tools'
+    gz-collections.yaml.
+
+    The remote file is the single source of truth for which collections are
+    active. Any failure to fetch or parse it aborts the run (fail loud) rather
+    than silently falling back to processing every collection.
+    """
+    print("Fetching active collections from release-tools...")
+
+    # check=True so a failed fetch raises and aborts the run.
+    output = run_command([
+        "gh", "api",
+        f"repos/{RELEASE_TOOLS_REPO}/contents/{GZ_COLLECTIONS_PATH}",
+        "-q", ".content"
+    ])
+
+    content = base64.b64decode(output).decode('utf-8')
+    data = yaml.safe_load(content)
+
+    if not data or 'collections' not in data or not data['collections']:
+        raise RuntimeError(
+            f"No 'collections' found in {RELEASE_TOOLS_REPO}/{GZ_COLLECTIONS_PATH}"
+        )
+
+    names = {c['name'] for c in data['collections'] if c.get('name')}
+    if not names:
+        raise RuntimeError(
+            f"No named collections in {RELEASE_TOOLS_REPO}/{GZ_COLLECTIONS_PATH}"
+        )
+
+    print(f"Active collections ({len(names)}): {', '.join(sorted(names))}")
+    return names
 
 
 def parse_repositories_with_branches(yaml_content: str) -> Dict[str, List[str]]:
