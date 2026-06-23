@@ -3,15 +3,6 @@ repositories:
 - name: gz-common
   branches:
   - branch: main
-    enforce_admins: false
-    require_conversation_resolution: false
-    require_signed_commits: false
-    required_linear_history: false
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      require_last_push_approval: false
-      required_approving_review_count: 1
     required_status_checks:
       contexts:
       - DCO
