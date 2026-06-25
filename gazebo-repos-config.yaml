@@ -3,10 +3,6 @@ repositories:
 - name: gz-cmake
   branches:
   - branch: gz-cmake3
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -16,16 +12,7 @@ repositories:
       - Validate package.xml
       - gz_cmake-pr-clowin
       - gz_cmake-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-cmake4
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -35,16 +22,7 @@ repositories:
       - Validate package.xml
       - gz_cmake-pr-clowin
       - gz_cmake-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-cmake5
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -54,16 +32,7 @@ repositories:
       - gz_cmake-ci-pr_any-noble-amd64
       - gz_cmake-pr-cnlwin
       - gz_cmake-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-cmake2
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -72,16 +41,7 @@ repositories:
       - gz_cmake-pr-clwin
       - gz_cmake-ci-pr_any-homebrew-arm64
       - gz_cmake-ci-pr_any-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -91,18 +51,9 @@ repositories:
       - gz_cmake-ci-pr_any-noble-amd64
       - gz_cmake-pr-cnlwin
       - gz_cmake-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-common
   branches:
   - branch: gz-common5
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -112,16 +63,7 @@ repositories:
       - gz_common-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_common-pr-clowin
       - gz_common-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-common6
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -131,16 +73,7 @@ repositories:
       - gz_common-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_common-pr-clowin
       - gz_common-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-common7
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -151,16 +84,7 @@ repositories:
       - Validate package.xml
       - gz_common-pr-cnlwin
       - gz_common-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-common4
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -170,16 +94,7 @@ repositories:
       - gz_common-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_common-ci-pr_any-homebrew-arm64
       - gz_common-pr-clwin
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -189,18 +104,9 @@ repositories:
       - Validate package.xml
       - gz_common-pr-cnlwin
       - gz_common-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-fuel-tools
   branches:
   - branch: gz-fuel-tools10
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -209,16 +115,7 @@ repositories:
       - gz_fuel_tools-ci-pr_any-noble-amd64
       - gz_fuel_tools-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-fuel-tools11
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -227,16 +124,7 @@ repositories:
       - gz_fuel_tools-ci-pr_any-noble-amd64
       - gz_fuel_tools-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-fuel-tools9
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -244,16 +132,7 @@ repositories:
       - Ubuntu Jammy CI
       - gz_fuel_tools-ci-pr_any-jammy-amd64
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-fuel-tools7
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -263,16 +142,7 @@ repositories:
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
       - gz_fuel_tools-ci-pr_any-jammy-amd64
       - gz_fuel_tools-pr-clwin
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -282,18 +152,9 @@ repositories:
       - Ubuntu Noble CI
       - gz_fuel_tools-pr-cnlwin
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-gui
   branches:
   - branch: gz-gui10
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -302,16 +163,7 @@ repositories:
       - gz_gui-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_gui-ci-pr_any-noble-amd64
       - gz_gui-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-gui8
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -319,16 +171,7 @@ repositories:
       - gz_gui-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_gui-ci-pr_any-jammy-amd64
       - gz_gui-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-gui9
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -336,32 +179,14 @@ repositories:
       - gz_gui-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_gui-ci-pr_any-noble-amd64
       - gz_gui-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-gui6
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
       - DCO
       - gz_gui-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_gui-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -369,34 +194,16 @@ repositories:
       - gz_gui-ci-pr_any-noble-amd64
       - Validate package.xml
       - gz_gui-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-launch
   branches:
   - branch: gz-launch7
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
       - DCO
       - gz_launch-ci-pr_any-jammy-amd64
       - gz_launch-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-launch8
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -404,16 +211,7 @@ repositories:
       - gz_launch-ci-pr_any-noble-amd64
       - Ubuntu Noble CI
       - gz_launch-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-launch9
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -421,16 +219,7 @@ repositories:
       - gz_launch-ci-pr_any-noble-amd64
       - Ubuntu Noble CI
       - gz_launch-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-launch5
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -439,18 +228,9 @@ repositories:
       - gz_launch-ci-pr_any-jammy-amd64
       - gz_launch-ci-pr_any-homebrew-arm64
       - Ubuntu Jammy CI
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-math
   branches:
   - branch: gz-math7
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -462,16 +242,7 @@ repositories:
       - Ubuntu Noble CI
       - gz_math-pr-clowin
       - gz_math-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-math8
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -483,16 +254,7 @@ repositories:
       - Validate package.xml
       - gz_math-pr-clowin
       - gz_math-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-math9
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -503,16 +265,7 @@ repositories:
       - gz_math-pr-cnlwin
       - Validate package.xml
       - gz_math-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-math6
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -522,16 +275,7 @@ repositories:
       - gz_math-ci-pr_any-homebrew-arm64
       - gz_math-ci-pr_any-jammy-amd64
       - gz_math-abichecker-any_to_any-ubuntu-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -541,18 +285,9 @@ repositories:
       - Validate package.xml
       - gz_math-pr-cnlwin
       - gz_math-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-msgs
   branches:
   - branch: gz-msgs10
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -562,16 +297,7 @@ repositories:
       - gz_msgs-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_msgs-ci-pr_any-homebrew-arm64
       - gz_msgs-pr-clowin
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-msgs11
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -581,16 +307,7 @@ repositories:
       - gz_msgs-ci-pr_any-noble-amd64
       - gz_msgs-pr-clowin
       - gz_msgs-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-msgs12
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -600,31 +317,13 @@ repositories:
       - gz_msgs-ci-pr_any-noble-amd64
       - gz_msgs-pr-cnlwin
       - gz_msgs-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-msgs8
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
       - Ubuntu Jammy CI
       - DCO
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -633,18 +332,9 @@ repositories:
       - gz_msgs-ci-pr_any-noble-amd64
       - Validate package.xml
       - gz_msgs-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-physics
   branches:
   - branch: gz-physics7
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -654,16 +344,7 @@ repositories:
       - gz_physics-abichecker-any_to_any-ubuntu-jammy-amd64
       - Validate package.xml
       - gz_physics-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-physics8
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -674,16 +355,7 @@ repositories:
       - Ubuntu Noble CI
       - gz_physics-pr-clowin
       - gz_physics-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-physics9
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -694,16 +366,7 @@ repositories:
       - gz_physics-ci-pr_any-noble-amd64
       - gz_physics-pr-cnlwin
       - gz_physics-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-physics5
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -712,16 +375,7 @@ repositories:
       - gz_physics-ci-pr_any-homebrew-arm64
       - gz_physics-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_physics-ci-pr_any-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -731,18 +385,9 @@ repositories:
       - Validate package.xml
       - gz_physics-pr-cnlwin
       - gz_physics-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-plugin
   branches:
   - branch: gz-plugin2
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -754,16 +399,7 @@ repositories:
       - Validate package.xml
       - gz_plugin-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_plugin-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-plugin3
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -774,16 +410,7 @@ repositories:
       - Validate package.xml
       - gz_plugin-pr-clowin
       - gz_plugin-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-plugin4
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -794,16 +421,7 @@ repositories:
       - Validate package.xml
       - gz_plugin-pr-cnlwin
       - gz_plugin-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-plugin1
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -812,16 +430,7 @@ repositories:
       - gz_plugin-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_plugin-ci-pr_any-homebrew-arm64
       - gz_plugin-ci-pr_any-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -830,18 +439,9 @@ repositories:
       - gz_plugin-ci-pr_any-noble-amd64
       - gz_plugin-pr-cnlwin
       - gz_plugin-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-rendering
   branches:
   - branch: gz-rendering10
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -851,16 +451,7 @@ repositories:
       - DCO
       - Validate package.xml
       - gz_rendering-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-rendering8
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -869,16 +460,7 @@ repositories:
       - gz_rendering-ci-pr_any-jammy-amd64
       - gz_rendering-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_rendering-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-rendering9
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -887,32 +469,14 @@ repositories:
       - gz_rendering-abichecker-any_to_any-ubuntu-noble-amd64
       - DCO
       - gz_rendering-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-rendering6
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
       - Ubuntu Jammy CI
       - DCO
       - gz_rendering-abichecker-any_to_any-ubuntu-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -920,18 +484,9 @@ repositories:
       - Validate package.xml
       - gz_rendering-ci-pr_any-homebrew-arm64
       - gz_rendering-ci-pr_any-noble-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-sensors
   branches:
   - branch: gz-sensors10
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -941,16 +496,7 @@ repositories:
       - Validate package.xml
       - DCO
       - gz_sensors-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-sensors8
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -960,16 +506,7 @@ repositories:
       - gz_sensors-abichecker-any_to_any-ubuntu-jammy-amd64
       - Validate package.xml
       - gz_sensors-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-sensors9
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -979,16 +516,7 @@ repositories:
       - gz_sensors-abichecker-any_to_any-ubuntu-noble-amd64
       - Validate package.xml
       - gz_sensors-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-sensors6
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -997,16 +525,7 @@ repositories:
       - gz_sensors-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_sensors-ci-pr_any-homebrew-arm64
       - gz_sensors-ci-pr_any-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1015,18 +534,9 @@ repositories:
       - Validate package.xml
       - Ubuntu Noble CI
       - gz_sensors-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-sim
   branches:
   - branch: gz-sim10
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -1036,16 +546,7 @@ repositories:
       - gz_sim-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_sim-ci-pr_any-noble-amd64
       - gz_sim-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-sim8
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -1055,16 +556,7 @@ repositories:
       - gz_sim-ci-pr_any-jammy-amd64
       - Validate package.xml
       - gz_sim-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-sim9
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -1074,31 +566,13 @@ repositories:
       - gz_sim-ci-pr_any-noble-amd64
       - gz_sim-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_sim-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-gazebo6
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
       - DCO
       - gz_sim-abichecker-any_to_any-ubuntu-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -1107,18 +581,9 @@ repositories:
       - Validate package.xml
       - Ubuntu Noble CI
       - gz_sim-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-tools
   branches:
   - branch: gz-tools2
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1131,16 +596,7 @@ repositories:
       - Validate package.xml
       - Ubuntu Noble CI
       - gz_tools-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-tools1
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1149,16 +605,7 @@ repositories:
       - gz_tools-ci-pr_any-homebrew-arm64
       - gz_tools-ci-pr_any-jammy-amd64
       - gz_tools-pr-clwin
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1166,18 +613,9 @@ repositories:
       - Validate package.xml
       - gz_tools-ci-pr_any-noble-amd64
       - gz_tools-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-transport
   branches:
   - branch: gz-transport13
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1185,16 +623,7 @@ repositories:
       - Ubuntu Jammy CI
       - gz_transport-ci-pr_any-jammy-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-transport14
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -1203,16 +632,7 @@ repositories:
       - gz_transport-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_transport-ci-pr_any-noble-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-transport15
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: false
       contexts:
@@ -1221,16 +641,7 @@ repositories:
       - gz_transport-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_transport-ci-pr_any-noble-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-transport11
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1240,16 +651,7 @@ repositories:
       - gz_transport-ci-pr_any-homebrew-arm64
       - gz_transport-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_transport-ci-pr_any-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1258,18 +660,9 @@ repositories:
       - Ubuntu Noble CI
       - Validate package.xml
       - gz_transport-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: gz-utils
   branches:
   - branch: gz-utils2
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1279,16 +672,7 @@ repositories:
       - gz_utils-ci-pr_any-homebrew-arm64
       - gz_utils-pr-clowin
       - gz_utils-abichecker-any_to_any-ubuntu-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-utils3
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1300,16 +684,7 @@ repositories:
       - gz_utils-ci-pr_any-homebrew-arm64
       - gz_utils-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_utils-pr-clowin
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: gz-utils4
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1320,16 +695,7 @@ repositories:
       - gz_utils-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_utils-pr-cnlwin
       - gz_utils-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: ign-utils1
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1339,16 +705,7 @@ repositories:
       - gz_utils-ci-pr_any-jammy-amd64
       - gz_utils-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_utils-pr-clwin
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1358,18 +715,9 @@ repositories:
       - Ubuntu Noble CI
       - gz_utils-pr-cnlwin
       - gz_utils-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
 - name: sdformat
   branches:
   - branch: main
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1379,16 +727,7 @@ repositories:
       - Validate package.xml
       - sdformat-pr-cnlwin
       - sdformat-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: sdf12
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1399,16 +738,7 @@ repositories:
       - sdformat-pr-clwin
       - sdformat-ci-pr_any-jammy-amd64
       - sdformat-abichecker-any_to_any-ubuntu-jammy-amd64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: sdf14
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1420,16 +750,7 @@ repositories:
       - Ubuntu Noble CI
       - Validate package.xml
       - sdformat-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: sdf15
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1443,16 +764,7 @@ repositories:
       - test / matrix-prep-bazelversion
       - sdformat-pr-clowin
       - sdformat-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
   - branch: sdf16
-    enforce_admins: false
-    require_signed_commits: false
-    required_linear_history: false
-    require_conversation_resolution: false
     required_status_checks:
       strict: true
       contexts:
@@ -1465,8 +777,3 @@ repositories:
       - test / matrix-prep-bazelversion
       - sdformat-pr-cnlwin
       - sdformat-ci-pr_any-homebrew-arm64
-    required_pull_request_reviews:
-      dismiss_stale_reviews: false
-      require_code_owner_reviews: false
-      required_approving_review_count: 1
-      require_last_push_approval: false
