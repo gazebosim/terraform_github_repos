@@ -23,6 +23,20 @@ This Terraform project manages GitHub repositories and their branch protection r
 - ❌ Modify repository settings (description, visibility, etc.)
 - ❌ Delete repositories
 
+**Only `required_status_checks` is managed.** The generated config keeps just
+the `required_status_checks` block per branch. Every other branch-protection
+setting (PR reviews, `enforce_admins`, signed commits, linear history, push
+restrictions, etc.) is intentionally **left unchanged** on GitHub via
+`lifecycle { ignore_changes }` in `branch_protection.tf` — even if you add those
+fields to the YAML, Terraform will not touch them.
+
+To manage an additional field, register a translator for it in
+`PROTECTION_FIELD_TRANSLATORS` (`scripts/generate_gazebo_config.py`) and remove
+it from the `ignore_changes` list in `branch_protection.tf`. Those two are
+complements: every field the generator does not emit must be in `ignore_changes`
+(Terraform's `ignore_changes` only accepts a literal list, so it is maintained
+by hand).
+
 ## Setup
 
 1. **Create a GitHub Personal Access Token**
@@ -64,16 +78,11 @@ This Terraform project manages GitHub repositories and their branch protection r
      - name: my-repo
        branches:
          - branch: main
-           enforce_admins: false
-           required_linear_history: true
            required_status_checks:
              strict: true
              contexts:
                - ci/test
                - ci/lint
-           required_pull_request_reviews:
-             dismiss_stale_reviews: true
-             required_approving_review_count: 1
    ```
 
 ## Usage
@@ -119,22 +128,11 @@ repositories:
   - name: gz-common              # Repository name
     branches:                     # List of branches to protect
       - branch: main              # Branch name/pattern
-        enforce_admins: false
-        require_signed_commits: false
-        required_linear_history: false
-        require_conversation_resolution: false
-        
-        required_status_checks:   # Optional
+        required_status_checks:   # The only managed field
           strict: true
           contexts:
             - DCO
             - CI-test
-        
-        required_pull_request_reviews:  # Optional
-          dismiss_stale_reviews: false
-          require_code_owner_reviews: false
-          required_approving_review_count: 1
-          require_last_push_approval: false
 ```
 
 ### Multiple Branches
@@ -146,14 +144,20 @@ repositories:
   - name: gz-sim
     branches:
       - branch: main
-        enforce_admins: false
-        # ... protection rules ...
+        required_status_checks:
+          strict: true
+          contexts:
+            - DCO
       - branch: gz-sim7
-        enforce_admins: true
-        # ... different protection rules ...
+        required_status_checks:
+          strict: true
+          contexts:
+            - gz_sim-ci-pr_any-jammy-amd64
       - branch: gz-sim8
-        enforce_admins: true
-        # ... different protection rules ...
+        required_status_checks:
+          strict: true
+          contexts:
+            - gz_sim-ci-pr_any-noble-amd64
 ```
 
 ## Gazebo Repositories Automation
@@ -176,11 +180,8 @@ The generated `gazebo-repos-config.yaml` contains:
 github_organization: gazebosim
 repositories:
   - name: gz-common
-    description: Gazebo gz-common
-    visibility: public
     branches:
       - branch: main
-        enforce_admins: false
         required_status_checks:
           strict: true
           contexts:
@@ -194,7 +195,10 @@ The Python script automatically:
 1. Fetches the active collections from release-tools' [`gz-collections.yaml`](https://github.com/gazebo-tooling/release-tools/blob/master/jenkins-scripts/dsl/gz-collections.yaml) and parses only the matching `collection-<name>.yaml` files from gazebodistro
 2. Extracts all `gz-*` and `sdformat` repositories with their branch versions
 3. Retrieves current branch protection rules from each repository branch
-4. Generates `gazebo-repos-config.yaml` with the complete configuration
+4. Filters each branch down to the fields registered in
+   `PROTECTION_FIELD_TRANSLATORS` (currently just `required_status_checks`) and
+   drops branches that have none of them
+5. Generates `gazebo-repos-config.yaml` with the filtered configuration
 
 ### Manual Generation
 

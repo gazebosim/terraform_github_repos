@@ -22,6 +22,27 @@ RELEASE_TOOLS_REPO = "gazebo-tooling/release-tools"
 GZ_COLLECTIONS_PATH = "jenkins-scripts/dsl/gz-collections.yaml"
 
 
+def _translate_status_checks(protection: Dict):
+    """API -> config for required_status_checks; None if not set."""
+    status_checks = protection.get("required_status_checks")
+    if not status_checks:
+        return None
+    return {
+        "strict": status_checks.get("strict", False),
+        "contexts": status_checks.get("contexts", []),
+    }
+
+
+# Branch-protection fields to keep in the generated config, mapped to their
+# GitHub-API -> config translator. The keys are the allowlist: anything not
+# listed here is discarded so Terraform leaves it unchanged (see lifecycle
+# ignore_changes in branch_protection.tf). To manage another field, add a
+# translator entry here AND remove that field from the ignore_changes list.
+PROTECTION_FIELD_TRANSLATORS = {
+    "required_status_checks": _translate_status_checks,
+}
+
+
 def run_command(cmd: List[str], check=True) -> str:
     """Run a shell command and return its output."""
     try:
@@ -214,36 +235,25 @@ def get_branch_protection(repo_name: str, branch: str) -> Dict:
 
 
 def protection_to_config(protection: Dict, branch: str) -> Dict:
-    """Convert GitHub API protection response to configuration dict."""
+    """Convert GitHub API protection response to configuration dict.
+
+    Only the fields registered in PROTECTION_FIELD_TRANSLATORS are kept; every
+    other protection setting fetched from GitHub is discarded so Terraform
+    leaves it unchanged.
+    """
     if not protection:
         return {}
-    
-    config = {
-        "branch": branch,
-        "enforce_admins": protection.get("enforce_admins", {}).get("enabled", False),
-        "require_signed_commits": protection.get("required_signatures", {}).get("enabled", False),
-        "required_linear_history": protection.get("required_linear_history", {}).get("enabled", False),
-        "require_conversation_resolution": protection.get("required_conversation_resolution", {}).get("enabled", False),
-    }
-    
-    # Required status checks
-    if "required_status_checks" in protection and protection["required_status_checks"]:
-        status_checks = protection["required_status_checks"]
-        config["required_status_checks"] = {
-            "strict": status_checks.get("strict", False),
-            "contexts": status_checks.get("contexts", [])
-        }
-    
-    # Required pull request reviews
-    if "required_pull_request_reviews" in protection and protection["required_pull_request_reviews"]:
-        reviews = protection["required_pull_request_reviews"]
-        config["required_pull_request_reviews"] = {
-            "dismiss_stale_reviews": reviews.get("dismiss_stale_reviews", False),
-            "require_code_owner_reviews": reviews.get("require_code_owner_reviews", False),
-            "required_approving_review_count": reviews.get("required_approving_review_count", 1),
-            "require_last_push_approval": reviews.get("require_last_push_approval", False),
-        }
-    
+
+    config = {"branch": branch}
+    for field, translate in PROTECTION_FIELD_TRANSLATORS.items():
+        value = translate(protection)
+        if value is not None:
+            config[field] = value
+
+    # Nothing interesting on this branch -> don't manage it.
+    if len(config) == 1:
+        return {}
+
     return config
 
 
@@ -273,7 +283,7 @@ def generate_yaml_config(repos_config: Dict) -> str:
 def main():
     """Main execution function."""
     print("=== Gazebo Repository Protection Rules Generator ===\n")
-    
+
     # Get all repositories with their branches from collection files
     repos_with_branches = get_all_repositories_with_branches()
     

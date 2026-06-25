@@ -39,4 +39,21 @@ resource "github_branch_protection" "protection" {
   }
 
   force_push_bypassers = lookup(each.value, "force_push_bypassers", [])
+
+  lifecycle {
+    # Manage only required_status_checks; leave every other protection setting
+    # as it currently exists on GitHub. Terraform's ignore_changes only accepts
+    # a literal list, so this is hand-maintained. It must stay the complement of
+    # PROTECTION_FIELD_TRANSLATORS in scripts/generate_gazebo_config.py: every
+    # field that script does NOT emit belongs here.
+    ignore_changes = [
+      enforce_admins,
+      require_signed_commits,
+      required_linear_history,
+      require_conversation_resolution,
+      required_pull_request_reviews,
+      restrict_pushes,
+      force_push_bypassers,
+    ]
+  }
 }
