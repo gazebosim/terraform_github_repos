@@ -73,7 +73,7 @@ repositories:
       - gz_common-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_common-pr-clowin
       - gz_common-ci-pr_any-homebrew-arm64
-  - branch: gz-common7
+  - branch: gz-common[7-9]
     required_status_checks:
       strict: true
       contexts:
@@ -84,7 +84,7 @@ repositories:
       - Validate package.xml
       - gz_common-pr-cnlwin
       - gz_common-ci-pr_any-homebrew-arm64
-  - branch: ign-common4
+  - branch: ign-common[4-9]
     required_status_checks:
       strict: true
       contexts:
@@ -106,7 +106,7 @@ repositories:
       - gz_common-ci-pr_any-homebrew-arm64
 - name: gz-fuel-tools
   branches:
-  - branch: gz-fuel-tools10
+  - branch: gz-fuel-tools[1][0-1]
     required_status_checks:
       strict: false
       contexts:
@@ -115,16 +115,7 @@ repositories:
       - gz_fuel_tools-ci-pr_any-noble-amd64
       - gz_fuel_tools-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
-  - branch: gz-fuel-tools11
-    required_status_checks:
-      strict: false
-      contexts:
-      - DCO
-      - Ubuntu Noble CI
-      - gz_fuel_tools-ci-pr_any-noble-amd64
-      - gz_fuel_tools-abichecker-any_to_any-ubuntu-noble-amd64
-      - gz_fuel_tools-ci-pr_any-homebrew-arm64
-  - branch: gz-fuel-tools9
+  - branch: gz-fuel-tools[9]
     required_status_checks:
       strict: true
       contexts:
@@ -132,7 +123,7 @@ repositories:
       - Ubuntu Jammy CI
       - gz_fuel_tools-ci-pr_any-jammy-amd64
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
-  - branch: ign-fuel-tools7
+  - branch: ign-fuel-tools[5-9]
     required_status_checks:
       strict: true
       contexts:
@@ -179,7 +170,7 @@ repositories:
       - gz_gui-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_gui-ci-pr_any-noble-amd64
       - gz_gui-ci-pr_any-homebrew-arm64
-  - branch: ign-gui6
+  - branch: ign-gui[3-6]
     required_status_checks:
       strict: true
       contexts:
@@ -203,7 +194,7 @@ repositories:
       - DCO
       - gz_launch-ci-pr_any-jammy-amd64
       - gz_launch-ci-pr_any-homebrew-arm64
-  - branch: gz-launch8
+  - branch: gz-launch[8-9]
     required_status_checks:
       strict: false
       contexts:
@@ -211,15 +202,7 @@ repositories:
       - gz_launch-ci-pr_any-noble-amd64
       - Ubuntu Noble CI
       - gz_launch-ci-pr_any-homebrew-arm64
-  - branch: gz-launch9
-    required_status_checks:
-      strict: false
-      contexts:
-      - DCO
-      - gz_launch-ci-pr_any-noble-amd64
-      - Ubuntu Noble CI
-      - gz_launch-ci-pr_any-homebrew-arm64
-  - branch: ign-launch5
+  - branch: ign-launch[5-9]
     required_status_checks:
       strict: false
       contexts:
@@ -317,7 +300,7 @@ repositories:
       - gz_msgs-ci-pr_any-noble-amd64
       - gz_msgs-pr-cnlwin
       - gz_msgs-ci-pr_any-homebrew-arm64
-  - branch: ign-msgs8
+  - branch: ign-msgs[6-9]
     required_status_checks:
       strict: true
       contexts:
@@ -366,7 +349,7 @@ repositories:
       - gz_physics-ci-pr_any-noble-amd64
       - gz_physics-pr-cnlwin
       - gz_physics-ci-pr_any-homebrew-arm64
-  - branch: ign-physics5
+  - branch: ign-physics[5-9]
     required_status_checks:
       strict: true
       contexts:
@@ -387,18 +370,6 @@ repositories:
       - gz_physics-ci-pr_any-homebrew-arm64
 - name: gz-plugin
   branches:
-  - branch: gz-plugin2
-    required_status_checks:
-      strict: true
-      contexts:
-      - DCO
-      - Ubuntu Focal CI
-      - Ubuntu Jammy CI
-      - gz_plugin-pr-win
-      - gz_plugin-ci-pr_any-jammy-amd64
-      - Validate package.xml
-      - gz_plugin-abichecker-any_to_any-ubuntu-jammy-amd64
-      - gz_plugin-ci-pr_any-homebrew-arm64
   - branch: gz-plugin3
     required_status_checks:
       strict: true
@@ -421,7 +392,19 @@ repositories:
       - Validate package.xml
       - gz_plugin-pr-cnlwin
       - gz_plugin-ci-pr_any-homebrew-arm64
-  - branch: ign-plugin1
+  - branch: gz-plugin[0-2]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - Ubuntu Jammy CI
+      - gz_plugin-pr-win
+      - gz_plugin-ci-pr_any-jammy-amd64
+      - Validate package.xml
+      - gz_plugin-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_plugin-ci-pr_any-homebrew-arm64
+  - branch: ign-plugin[0-9]
     required_status_checks:
       strict: true
       contexts:
@@ -441,7 +424,7 @@ repositories:
       - gz_plugin-ci-pr_any-homebrew-arm64
 - name: gz-rendering
   branches:
-  - branch: gz-rendering10
+  - branch: gz-rendering1[0-9]
     required_status_checks:
       strict: false
       contexts:
@@ -451,7 +434,7 @@ repositories:
       - DCO
       - Validate package.xml
       - gz_rendering-ci-pr_any-homebrew-arm64
-  - branch: gz-rendering8
+  - branch: gz-rendering[8]
     required_status_checks:
       strict: true
       contexts:
@@ -460,7 +443,7 @@ repositories:
       - gz_rendering-ci-pr_any-jammy-amd64
       - gz_rendering-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_rendering-ci-pr_any-homebrew-arm64
-  - branch: gz-rendering9
+  - branch: gz-rendering[9]
     required_status_checks:
       strict: false
       contexts:
@@ -469,7 +452,7 @@ repositories:
       - gz_rendering-abichecker-any_to_any-ubuntu-noble-amd64
       - DCO
       - gz_rendering-ci-pr_any-homebrew-arm64
-  - branch: ign-rendering6
+  - branch: ign-rendering[6-9]
     required_status_checks:
       strict: true
       contexts:
@@ -486,7 +469,7 @@ repositories:
       - gz_rendering-ci-pr_any-noble-amd64
 - name: gz-sensors
   branches:
-  - branch: gz-sensors10
+  - branch: gz-sensors1[0-9]
     required_status_checks:
       strict: true
       contexts:
@@ -496,7 +479,7 @@ repositories:
       - Validate package.xml
       - DCO
       - gz_sensors-ci-pr_any-homebrew-arm64
-  - branch: gz-sensors8
+  - branch: gz-sensors[8]
     required_status_checks:
       strict: false
       contexts:
@@ -506,7 +489,7 @@ repositories:
       - gz_sensors-abichecker-any_to_any-ubuntu-jammy-amd64
       - Validate package.xml
       - gz_sensors-ci-pr_any-homebrew-arm64
-  - branch: gz-sensors9
+  - branch: gz-sensors[9]
     required_status_checks:
       strict: false
       contexts:
@@ -516,7 +499,7 @@ repositories:
       - gz_sensors-abichecker-any_to_any-ubuntu-noble-amd64
       - Validate package.xml
       - gz_sensors-ci-pr_any-homebrew-arm64
-  - branch: ign-sensors6
+  - branch: ign-sensors[6-9]
     required_status_checks:
       strict: true
       contexts:
@@ -536,7 +519,7 @@ repositories:
       - gz_sensors-ci-pr_any-homebrew-arm64
 - name: gz-sim
   branches:
-  - branch: gz-sim10
+  - branch: gz-sim1[0-9]
     required_status_checks:
       strict: false
       contexts:
@@ -566,7 +549,7 @@ repositories:
       - gz_sim-ci-pr_any-noble-amd64
       - gz_sim-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_sim-ci-pr_any-homebrew-arm64
-  - branch: ign-gazebo6
+  - branch: ign-gazebo[0-6]
     required_status_checks:
       strict: false
       contexts:
@@ -583,7 +566,7 @@ repositories:
       - gz_sim-ci-pr_any-homebrew-arm64
 - name: gz-tools
   branches:
-  - branch: gz-tools2
+  - branch: gz-tools[0-9]
     required_status_checks:
       strict: true
       contexts:
@@ -596,7 +579,7 @@ repositories:
       - Validate package.xml
       - Ubuntu Noble CI
       - gz_tools-ci-pr_any-homebrew-arm64
-  - branch: ign-tools1
+  - branch: ign-tools[0-9]
     required_status_checks:
       strict: true
       contexts:
@@ -623,7 +606,7 @@ repositories:
       - Ubuntu Jammy CI
       - gz_transport-ci-pr_any-jammy-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
-  - branch: gz-transport14
+  - branch: gz-transport[0-9][4-9]
     required_status_checks:
       strict: false
       contexts:
@@ -632,16 +615,7 @@ repositories:
       - gz_transport-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_transport-ci-pr_any-noble-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
-  - branch: gz-transport15
-    required_status_checks:
-      strict: false
-      contexts:
-      - DCO
-      - Ubuntu Noble CI
-      - gz_transport-abichecker-any_to_any-ubuntu-noble-amd64
-      - gz_transport-ci-pr_any-noble-amd64
-      - gz_transport-ci-pr_any-homebrew-arm64
-  - branch: ign-transport11
+  - branch: ign-transport[0-9][0-9]
     required_status_checks:
       strict: true
       contexts:
@@ -662,16 +636,6 @@ repositories:
       - gz_transport-ci-pr_any-homebrew-arm64
 - name: gz-utils
   branches:
-  - branch: gz-utils2
-    required_status_checks:
-      strict: true
-      contexts:
-      - DCO
-      - Ubuntu Jammy CI
-      - gz_utils-ci-pr_any-jammy-amd64
-      - gz_utils-ci-pr_any-homebrew-arm64
-      - gz_utils-pr-clowin
-      - gz_utils-abichecker-any_to_any-ubuntu-jammy-amd64
   - branch: gz-utils3
     required_status_checks:
       strict: true
@@ -684,7 +648,17 @@ repositories:
       - gz_utils-ci-pr_any-homebrew-arm64
       - gz_utils-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_utils-pr-clowin
-  - branch: gz-utils4
+  - branch: gz-utils[0-2]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_utils-ci-pr_any-jammy-amd64
+      - gz_utils-ci-pr_any-homebrew-arm64
+      - gz_utils-pr-clowin
+      - gz_utils-abichecker-any_to_any-ubuntu-jammy-amd64
+  - branch: gz-utils[4-9]
     required_status_checks:
       strict: true
       contexts:
@@ -695,7 +669,7 @@ repositories:
       - gz_utils-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_utils-pr-cnlwin
       - gz_utils-ci-pr_any-homebrew-arm64
-  - branch: ign-utils1
+  - branch: ign-utils[0-9]
     required_status_checks:
       strict: true
       contexts:
@@ -727,17 +701,6 @@ repositories:
       - Validate package.xml
       - sdformat-pr-cnlwin
       - sdformat-ci-pr_any-homebrew-arm64
-  - branch: sdf12
-    required_status_checks:
-      strict: true
-      contexts:
-      - build
-      - DCO
-      - Ubuntu Jammy CI
-      - sdformat-ci-pr_any-homebrew-arm64
-      - sdformat-pr-clwin
-      - sdformat-ci-pr_any-jammy-amd64
-      - sdformat-abichecker-any_to_any-ubuntu-jammy-amd64
   - branch: sdf14
     required_status_checks:
       strict: true
@@ -764,7 +727,18 @@ repositories:
       - test / matrix-prep-bazelversion
       - sdformat-pr-clowin
       - sdformat-ci-pr_any-homebrew-arm64
-  - branch: sdf16
+  - branch: sdf1[0-3]
+    required_status_checks:
+      strict: true
+      contexts:
+      - build
+      - DCO
+      - Ubuntu Jammy CI
+      - sdformat-ci-pr_any-homebrew-arm64
+      - sdformat-pr-clwin
+      - sdformat-ci-pr_any-jammy-amd64
+      - sdformat-abichecker-any_to_any-ubuntu-jammy-amd64
+  - branch: sdf[1-9][6-9]
     required_status_checks:
       strict: true
       contexts:
