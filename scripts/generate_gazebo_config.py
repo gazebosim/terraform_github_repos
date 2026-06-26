@@ -8,6 +8,12 @@ wildcard patterns (e.g. ``gz-common[7-9]``) are preserved verbatim.  The
 REST endpoint ``/branches/{branch}/protection`` resolves wildcards and loses
 the original pattern, which breaks ``terraform import``.
 
+All protection rules with ``required_status_checks`` are included for every
+repo that appears in an active collection, regardless of which specific
+branches currently exist.  This means newly pre-created rules (e.g.
+``gz-common1[0-9]``) are picked up immediately on the next regeneration
+without having to wait for that branch to appear in a collection file.
+
 To manage an additional protection field:
   1. Add its GraphQL field to the query in ``get_repo_protection_rules``.
   2. Handle it in ``rule_to_config``.
@@ -16,7 +22,6 @@ To manage an additional protection field:
 """
 
 import base64
-import fnmatch
 import json
 import subprocess
 import sys
@@ -202,14 +207,6 @@ def rule_to_config(rule: Dict) -> Dict:
     }
 
 
-def branch_matches_pattern(branch: str, pattern: str) -> bool:
-    """Return True if *branch* matches a GitHub branch-protection *pattern*.
-
-    GitHub uses fnmatch-style globs (``*``, ``?``, ``[a-z]``).
-    """
-    return fnmatch.fnmatch(branch, pattern)
-
-
 # ---------------------------------------------------------------------------
 # Repo existence check
 # ---------------------------------------------------------------------------
@@ -261,9 +258,7 @@ def main():
             print(f"Repository {repo_name} does not exist, skipping...")
             continue
 
-        active_branches = repos_with_branches[repo_name]
-        print(f"Processing {repo_name} "
-              f"(active branches: {', '.join(sorted(active_branches))})...")
+        print(f"Processing {repo_name}...")
 
         rules = get_repo_protection_rules(repo_name)
         total_rules_checked += len(rules)
@@ -271,10 +266,6 @@ def main():
         repo_entries: List[Dict] = []
         for rule in rules:
             pattern = rule.get("pattern", "")
-            # Only manage rules that cover at least one active collection branch.
-            if not any(branch_matches_pattern(b, pattern) for b in active_branches):
-                print(f"  Skipping pattern '{pattern}' (no active branch matches)")
-                continue
             config = rule_to_config(rule)
             if not config:
                 print(f"  Skipping pattern '{pattern}' (no managed fields)")

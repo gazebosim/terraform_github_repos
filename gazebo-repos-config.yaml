@@ -84,6 +84,19 @@ repositories:
       - Validate package.xml
       - gz_common-pr-cnlwin
       - gz_common-ci-pr_any-homebrew-arm64
+  - branch: ign-common3
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Bionic CI
+      - Ubuntu Focal CI
+  - branch: ign-common[0-2]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Bionic CI
   - branch: ign-common[4-9]
     required_status_checks:
       strict: true
@@ -106,6 +119,16 @@ repositories:
       - gz_common-ci-pr_any-homebrew-arm64
 - name: gz-fuel-tools
   branches:
+  - branch: gz-fuel-tools[0-8]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - Ubuntu Jammy CI
+      - gz_fuel_tools-ci-pr_any-homebrew-amd64
+      - gz_fuel_tools-ci-pr_any-focal-amd64
+      - gz_fuel_tools-abichecker-any_to_any-ubuntu-focal-amd64
   - branch: gz-fuel-tools[1][0-1]
     required_status_checks:
       strict: false
@@ -123,6 +146,18 @@ repositories:
       - Ubuntu Jammy CI
       - gz_fuel_tools-ci-pr_any-jammy-amd64
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
+  - branch: ign-fuel-tools4
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_fuel_tools-abichecker-any_to_any-ubuntu-focal-amd64
+  - branch: ign-fuel-tools[0-3]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - ignition_fuel-tools-abichecker-any_to_any-ubuntu_auto-amd64
   - branch: ign-fuel-tools[5-9]
     required_status_checks:
       strict: true
@@ -170,6 +205,22 @@ repositories:
       - gz_gui-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_gui-ci-pr_any-noble-amd64
       - gz_gui-ci-pr_any-homebrew-arm64
+  - branch: gz-gui[0-7]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_gui-ci-pr_any-homebrew-amd64
+      - gz_gui-abichecker-any_to_any-ubuntu-focal-amd64
+      - gz_gui-ci-pr_any-focal-amd64
+  - branch: ign-gui[0-3]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_gui-abichecker-any_to_any-ubuntu-focal-amd64
+      - gz_gui-ci-pr_any-focal-amd64
+      - gz_gui-ci-pr_any-homebrew-amd64
   - branch: ign-gui[3-6]
     required_status_checks:
       strict: true
@@ -194,6 +245,15 @@ repositories:
       - DCO
       - gz_launch-ci-pr_any-jammy-amd64
       - gz_launch-ci-pr_any-homebrew-arm64
+  - branch: gz-launch[0-6]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - gz_launch-ci-pr_any-homebrew-amd64
+      - gz_launch-abichecker-any_to_any-ubuntu-focal-amd64
+      - gz_launch-ci-pr_any-focal-amd64
   - branch: gz-launch[8-9]
     required_status_checks:
       strict: false
@@ -202,6 +262,12 @@ repositories:
       - gz_launch-ci-pr_any-noble-amd64
       - Ubuntu Noble CI
       - gz_launch-ci-pr_any-homebrew-arm64
+  - branch: ign-launch[0-4]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
   - branch: ign-launch[5-9]
     required_status_checks:
       strict: false
@@ -211,6 +277,13 @@ repositories:
       - gz_launch-ci-pr_any-jammy-amd64
       - gz_launch-ci-pr_any-homebrew-arm64
       - Ubuntu Jammy CI
+  - branch: main
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - gz_launch-ci-pr_any-noble-amd64
+      - gz_launch-ci-pr_any-homebrew-arm64
 - name: gz-math
   branches:
   - branch: gz-math7
@@ -300,6 +373,30 @@ repositories:
       - gz_msgs-ci-pr_any-noble-amd64
       - gz_msgs-pr-cnlwin
       - gz_msgs-ci-pr_any-homebrew-arm64
+  - branch: gz-msgs[0-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - Ubuntu Jammy CI
+      - gz_msgs-ci-pr_any-homebrew-amd64
+      - gz_msgs-pr-win
+      - gz_msgs-abichecker-any_to_any-ubuntu-focal-amd64
+      - gz_msgs-ci-pr_any-focal-amd64
+  - branch: ign-msgs[0-1]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Bionic CI
+  - branch: ign-msgs[2-5]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Bionic CI
+      - Ubuntu Focal CI
   - branch: ign-msgs[6-9]
     required_status_checks:
       strict: true
@@ -349,6 +446,24 @@ repositories:
       - gz_physics-ci-pr_any-noble-amd64
       - gz_physics-pr-cnlwin
       - gz_physics-ci-pr_any-homebrew-arm64
+  - branch: gz-physics[0-6]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - Ubuntu Jammy CI
+      - gz_physics-abichecker-any_to_any-ubuntu-focal-amd64
+      - gz_physics-ci-pr_any-focal-amd64
+  - branch: ign-physics[0-4]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - gz_physics-ci-pr_any-focal-amd64
+      - gz_physics-ci-pr_any-homebrew-amd64
+      - gz_physics-abichecker-any_to_any-ubuntu-focal-amd64
   - branch: ign-physics[5-9]
     required_status_checks:
       strict: true
@@ -434,6 +549,14 @@ repositories:
       - DCO
       - Validate package.xml
       - gz_rendering-ci-pr_any-homebrew-arm64
+  - branch: gz-rendering[0-7]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - Ubuntu Jammy CI
+      - gz_rendering-abichecker-any_to_any-ubuntu-focal-amd64
   - branch: gz-rendering[8]
     required_status_checks:
       strict: true
@@ -452,6 +575,14 @@ repositories:
       - gz_rendering-abichecker-any_to_any-ubuntu-noble-amd64
       - DCO
       - gz_rendering-ci-pr_any-homebrew-arm64
+  - branch: ign-rendering[0-5]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Bionic CI
+      - Ubuntu Focal CI
+      - gz_rendering-abichecker-any_to_any-ubuntu-focal-amd64
   - branch: ign-rendering[6-9]
     required_status_checks:
       strict: true
@@ -479,6 +610,14 @@ repositories:
       - Validate package.xml
       - DCO
       - gz_sensors-ci-pr_any-homebrew-arm64
+  - branch: gz-sensors[0-7]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - gz_sensors-abichecker-any_to_any-ubuntu-focal-amd64
+      - gz_sensors-ci-pr_any-focal-amd64
   - branch: gz-sensors[8]
     required_status_checks:
       strict: false
@@ -499,6 +638,15 @@ repositories:
       - gz_sensors-abichecker-any_to_any-ubuntu-noble-amd64
       - Validate package.xml
       - gz_sensors-ci-pr_any-homebrew-arm64
+  - branch: ign-sensors[0-5]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - gz_sensors-abichecker-any_to_any-ubuntu-focal-amd64
+      - gz_sensors-ci-pr_any-focal-amd64
+      - gz_sensors-ci-pr_any-homebrew-amd64
   - branch: ign-sensors[6-9]
     required_status_checks:
       strict: true
@@ -549,6 +697,16 @@ repositories:
       - gz_sim-ci-pr_any-noble-amd64
       - gz_sim-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_sim-ci-pr_any-homebrew-arm64
+  - branch: gz-sim[0-7]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - gz_sim-abichecker-any_to_any-ubuntu-focal-amd64
+      - gz_sim-ci-pr_any-homebrew-amd64
+      - gz_sim-ci-pr_any-focal-amd64
+      - Ubuntu Focal CI
+      - Ubuntu Jammy CI
   - branch: ign-gazebo[0-6]
     required_status_checks:
       strict: false
@@ -606,6 +764,16 @@ repositories:
       - Ubuntu Jammy CI
       - gz_transport-ci-pr_any-jammy-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
+  - branch: gz-transport[0-9][0-2]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - Ubuntu Jammy CI
+      - gz_transport-pr-win
+      - gz_transport-ci-pr_any-homebrew-amd64
+      - gz_transport-ci-pr_any-focal-amd64
   - branch: gz-transport[0-9][4-9]
     required_status_checks:
       strict: false
@@ -615,6 +783,12 @@ repositories:
       - gz_transport-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_transport-ci-pr_any-noble-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
+  - branch: ign-transport[0-7]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Bionic CI
   - branch: ign-transport[0-9][0-9]
     required_status_checks:
       strict: true
@@ -625,6 +799,13 @@ repositories:
       - gz_transport-ci-pr_any-homebrew-arm64
       - gz_transport-abichecker-any_to_any-ubuntu-jammy-amd64
       - gz_transport-ci-pr_any-jammy-amd64
+  - branch: ign-transport[8-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Bionic CI
+      - Ubuntu Focal CI
   - branch: main
     required_status_checks:
       strict: true
@@ -738,6 +919,16 @@ repositories:
       - sdformat-pr-clwin
       - sdformat-ci-pr_any-jammy-amd64
       - sdformat-abichecker-any_to_any-ubuntu-jammy-amd64
+  - branch: sdf[0-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - sdformat-ci-pr_any-homebrew-amd64
+      - build
+      - DCO
+      - Ubuntu Focal CI
+      - sdformat-ci-pr_any-focal-amd64
+      - sdformat-abichecker-any_to_any-ubuntu-focal-amd64
   - branch: sdf[1-9][6-9]
     required_status_checks:
       strict: true
