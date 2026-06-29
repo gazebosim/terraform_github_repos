@@ -1,0 +1,753 @@
+github_organization: gazebosim
+repositories:
+- name: gz-cmake
+  branches:
+  - branch: gz-cmake3
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_cmake-ci-pr_any-jammy-amd64
+      - Validate package.xml
+      - gz_cmake-pr-clowin
+      - gz_cmake-ci-pr_any-homebrew-arm64
+  - branch: gz-cmake4
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_cmake-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - gz_cmake-pr-clowin
+      - gz_cmake-ci-pr_any-homebrew-arm64
+  - branch: gz-cmake5
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_cmake-ci-pr_any-resolute-amd64
+      - gz_cmake-pr-cnlwin
+      - gz_cmake-ci-pr_any-homebrew-arm64
+  - branch: ign-cmake2
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_cmake-pr-clwin
+      - gz_cmake-ci-pr_any-homebrew-arm64
+      - gz_cmake-ci-pr_any-jammy-amd64
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_cmake-ci-pr_any-resolute-amd64
+      - gz_cmake-pr-cnlwin
+      - gz_cmake-ci-pr_any-homebrew-arm64
+- name: gz-common
+  branches:
+  - branch: gz-common5
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_common-ci-pr_any-jammy-amd64
+      - gz_common-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_common-pr-clowin
+      - gz_common-ci-pr_any-homebrew-arm64
+  - branch: gz-common6
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_common-ci-pr_any-resolute-amd64
+      - gz_common-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_common-pr-clowin
+      - gz_common-ci-pr_any-homebrew-arm64
+  - branch: gz-common[7-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_common-ci-pr_any-resolute-amd64
+      - gz_common-abichecker-any_to_any-ubuntu-resolute-amd64
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_common-pr-cnlwin
+      - gz_common-ci-pr_any-homebrew-arm64
+  - branch: ign-common[4-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_common-ci-pr_any-jammy-amd64
+      - gz_common-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_common-ci-pr_any-homebrew-arm64
+      - gz_common-pr-clwin
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_common-ci-pr_any-resolute-amd64
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_common-pr-cnlwin
+      - gz_common-ci-pr_any-homebrew-arm64
+- name: gz-fuel-tools
+  branches:
+  - branch: gz-fuel-tools[1][0-1]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_fuel_tools-ci-pr_any-resolute-amd64
+      - gz_fuel_tools-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_fuel_tools-ci-pr_any-homebrew-arm64
+  - branch: gz-fuel-tools[9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_fuel_tools-ci-pr_any-jammy-amd64
+      - gz_fuel_tools-ci-pr_any-homebrew-arm64
+  - branch: ign-fuel-tools[5-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_fuel_tools-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_fuel_tools-ci-pr_any-homebrew-arm64
+      - gz_fuel_tools-ci-pr_any-jammy-amd64
+      - gz_fuel_tools-pr-clwin
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Validate package.xml
+      - gz_fuel_tools-ci-pr_any-resolute-amd64
+      - Ubuntu resolute CI
+      - gz_fuel_tools-pr-cnlwin
+      - gz_fuel_tools-ci-pr_any-homebrew-arm64
+- name: gz-gui
+  branches:
+  - branch: gz-gui10
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Validate package.xml
+      - gz_gui-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_gui-ci-pr_any-resolute-amd64
+      - gz_gui-ci-pr_any-homebrew-arm64
+  - branch: gz-gui8
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_gui-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_gui-ci-pr_any-jammy-amd64
+      - gz_gui-ci-pr_any-homebrew-arm64
+  - branch: gz-gui9
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_gui-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_gui-ci-pr_any-resolute-amd64
+      - gz_gui-ci-pr_any-homebrew-arm64
+  - branch: ign-gui[3-6]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_gui-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_gui-ci-pr_any-homebrew-arm64
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_gui-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - gz_gui-ci-pr_any-homebrew-arm64
+- name: gz-launch
+  branches:
+  - branch: gz-launch7
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - gz_launch-ci-pr_any-jammy-amd64
+      - gz_launch-ci-pr_any-homebrew-arm64
+  - branch: gz-launch[8-9]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - gz_launch-ci-pr_any-resolute-amd64
+      - Ubuntu resolute CI
+      - gz_launch-ci-pr_any-homebrew-arm64
+  - branch: ign-launch[5-9]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - gz_launch-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_launch-ci-pr_any-jammy-amd64
+      - gz_launch-ci-pr_any-homebrew-arm64
+      - Ubuntu Jammy CI
+- name: gz-math
+  branches:
+  - branch: gz-math7
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_math-ci-pr_any-jammy-amd64
+      - gz_math-abichecker-any_to_any-ubuntu-jammy-amd64
+      - Validate package.xml
+      - Ubuntu resolute CI
+      - gz_math-pr-clowin
+      - gz_math-ci-pr_any-homebrew-arm64
+  - branch: gz-math8
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Ubuntu Jammy CI
+      - gz_math-ci-pr_any-resolute-amd64
+      - gz_math-abichecker-any_to_any-ubuntu-resolute-amd64
+      - Validate package.xml
+      - gz_math-pr-clowin
+      - gz_math-ci-pr_any-homebrew-arm64
+  - branch: gz-math9
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_math-ci-pr_any-resolute-amd64
+      - gz_math-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_math-pr-cnlwin
+      - Validate package.xml
+      - gz_math-ci-pr_any-homebrew-arm64
+  - branch: ign-math6
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_math-pr-clwin
+      - gz_math-ci-pr_any-homebrew-arm64
+      - gz_math-ci-pr_any-jammy-amd64
+      - gz_math-abichecker-any_to_any-ubuntu-jammy-amd64
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_math-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - gz_math-pr-cnlwin
+      - gz_math-ci-pr_any-homebrew-arm64
+- name: gz-msgs
+  branches:
+  - branch: gz-msgs10
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_msgs-ci-pr_any-jammy-amd64
+      - gz_msgs-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_msgs-ci-pr_any-homebrew-arm64
+      - gz_msgs-pr-clowin
+  - branch: gz-msgs11
+    required_status_checks:
+      strict: false
+      contexts:
+      - gz_msgs-abichecker-any_to_any-ubuntu-resolute-amd64
+      - DCO
+      - Ubuntu resolute CI
+      - gz_msgs-ci-pr_any-resolute-amd64
+      - gz_msgs-pr-clowin
+      - gz_msgs-ci-pr_any-homebrew-arm64
+  - branch: gz-msgs12
+    required_status_checks:
+      strict: false
+      contexts:
+      - gz_msgs-abichecker-any_to_any-ubuntu-resolute-amd64
+      - DCO
+      - Ubuntu resolute CI
+      - gz_msgs-ci-pr_any-resolute-amd64
+      - gz_msgs-pr-cnlwin
+      - gz_msgs-ci-pr_any-homebrew-arm64
+  - branch: ign-msgs[6-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - Ubuntu Jammy CI
+      - DCO
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_msgs-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - gz_msgs-ci-pr_any-homebrew-arm64
+- name: gz-physics
+  branches:
+  - branch: gz-physics7
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_physics-ci-pr_any-jammy-amd64
+      - gz_physics-abichecker-any_to_any-ubuntu-jammy-amd64
+      - Validate package.xml
+      - gz_physics-ci-pr_any-homebrew-arm64
+  - branch: gz-physics8
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Validate package.xml
+      - gz_physics-ci-pr_any-resolute-amd64
+      - gz_physics-abichecker-any_to_any-ubuntu-resolute-amd64
+      - Ubuntu resolute CI
+      - gz_physics-pr-clowin
+      - gz_physics-ci-pr_any-homebrew-arm64
+  - branch: gz-physics9
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_physics-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_physics-ci-pr_any-resolute-amd64
+      - gz_physics-pr-cnlwin
+      - gz_physics-ci-pr_any-homebrew-arm64
+  - branch: ign-physics[5-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - Ubuntu Jammy CI
+      - DCO
+      - gz_physics-ci-pr_any-homebrew-arm64
+      - gz_physics-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_physics-ci-pr_any-jammy-amd64
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_physics-ci-pr_any-resolute-amd64
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_physics-pr-cnlwin
+      - gz_physics-ci-pr_any-homebrew-arm64
+- name: gz-plugin
+  branches:
+  - branch: gz-plugin3
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_plugin-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_plugin-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - gz_plugin-pr-clowin
+      - gz_plugin-ci-pr_any-homebrew-arm64
+  - branch: gz-plugin4
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_plugin-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_plugin-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - gz_plugin-pr-cnlwin
+      - gz_plugin-ci-pr_any-homebrew-arm64
+  - branch: gz-plugin[0-2]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Focal CI
+      - Ubuntu Jammy CI
+      - gz_plugin-pr-win
+      - gz_plugin-ci-pr_any-jammy-amd64
+      - Validate package.xml
+      - gz_plugin-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_plugin-ci-pr_any-homebrew-arm64
+  - branch: ign-plugin[0-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_plugin-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_plugin-ci-pr_any-homebrew-arm64
+      - gz_plugin-ci-pr_any-jammy-amd64
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Validate package.xml
+      - gz_plugin-ci-pr_any-resolute-amd64
+      - gz_plugin-pr-cnlwin
+      - gz_plugin-ci-pr_any-homebrew-arm64
+- name: gz-rendering
+  branches:
+  - branch: gz-rendering1[0-9]
+    required_status_checks:
+      strict: false
+      contexts:
+      - Ubuntu resolute CI
+      - gz_rendering-ci-pr_any-resolute-amd64
+      - gz_rendering-abichecker-any_to_any-ubuntu-resolute-amd64
+      - DCO
+      - Validate package.xml
+      - gz_rendering-ci-pr_any-homebrew-arm64
+  - branch: gz-rendering[8]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_rendering-ci-pr_any-jammy-amd64
+      - gz_rendering-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_rendering-ci-pr_any-homebrew-arm64
+  - branch: gz-rendering[9]
+    required_status_checks:
+      strict: false
+      contexts:
+      - Ubuntu resolute CI
+      - gz_rendering-ci-pr_any-resolute-amd64
+      - gz_rendering-abichecker-any_to_any-ubuntu-resolute-amd64
+      - DCO
+      - gz_rendering-ci-pr_any-homebrew-arm64
+  - branch: ign-rendering[6-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - Ubuntu Jammy CI
+      - DCO
+      - gz_rendering-abichecker-any_to_any-ubuntu-jammy-amd64
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Validate package.xml
+      - gz_rendering-ci-pr_any-homebrew-arm64
+      - gz_rendering-ci-pr_any-resolute-amd64
+- name: gz-sensors
+  branches:
+  - branch: gz-sensors1[0-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - Ubuntu resolute CI
+      - gz_sensors-ci-pr_any-resolute-amd64
+      - gz_sensors-abichecker-any_to_any-ubuntu-resolute-amd64
+      - Validate package.xml
+      - DCO
+      - gz_sensors-ci-pr_any-homebrew-arm64
+  - branch: gz-sensors[8]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_sensors-ci-pr_any-jammy-amd64
+      - gz_sensors-abichecker-any_to_any-ubuntu-jammy-amd64
+      - Validate package.xml
+      - gz_sensors-ci-pr_any-homebrew-arm64
+  - branch: gz-sensors[9]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_sensors-ci-pr_any-resolute-amd64
+      - gz_sensors-abichecker-any_to_any-ubuntu-resolute-amd64
+      - Validate package.xml
+      - gz_sensors-ci-pr_any-homebrew-arm64
+  - branch: ign-sensors[6-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_sensors-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_sensors-ci-pr_any-homebrew-arm64
+      - gz_sensors-ci-pr_any-jammy-amd64
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_sensors-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - Ubuntu resolute CI
+      - gz_sensors-ci-pr_any-homebrew-arm64
+- name: gz-sim
+  branches:
+  - branch: gz-sim1[0-9]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_sim-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_sim-ci-pr_any-resolute-amd64
+      - gz_sim-ci-pr_any-homebrew-arm64
+  - branch: gz-sim8
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - gz_sim-abichecker-any_to_any-ubuntu-jammy-amd64
+      - Ubuntu Jammy CI
+      - gz_sim-ci-pr_any-jammy-amd64
+      - Validate package.xml
+      - gz_sim-ci-pr_any-homebrew-arm64
+  - branch: gz-sim9
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_sim-ci-pr_any-resolute-amd64
+      - gz_sim-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_sim-ci-pr_any-homebrew-arm64
+  - branch: ign-gazebo[0-6]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - gz_sim-abichecker-any_to_any-ubuntu-jammy-amd64
+  - branch: main
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - gz_sim-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - Ubuntu resolute CI
+      - gz_sim-ci-pr_any-homebrew-arm64
+- name: gz-tools
+  branches:
+  - branch: gz-tools[0-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_tools-ci-pr_any-jammy-amd64
+      - gz_tools-pr-cnlwin
+      - gz_tools-pr-clowin
+      - gz_tools-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - Ubuntu resolute CI
+      - gz_tools-ci-pr_any-homebrew-arm64
+  - branch: ign-tools[0-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_tools-ci-pr_any-homebrew-arm64
+      - gz_tools-ci-pr_any-jammy-amd64
+      - gz_tools-pr-clwin
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Validate package.xml
+      - gz_tools-ci-pr_any-resolute-amd64
+      - gz_tools-ci-pr_any-homebrew-arm64
+- name: gz-transport
+  branches:
+  - branch: gz-transport13
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_transport-ci-pr_any-jammy-amd64
+      - gz_transport-ci-pr_any-homebrew-arm64
+  - branch: gz-transport[0-9][4-9]
+    required_status_checks:
+      strict: false
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - gz_transport-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_transport-ci-pr_any-resolute-amd64
+      - gz_transport-ci-pr_any-homebrew-arm64
+  - branch: ign-transport[0-9][0-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_transport-pr-clwin
+      - gz_transport-ci-pr_any-homebrew-arm64
+      - gz_transport-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_transport-ci-pr_any-jammy-amd64
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_transport-ci-pr_any-resolute-amd64
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_transport-ci-pr_any-homebrew-arm64
+- name: gz-utils
+  branches:
+  - branch: gz-utils3
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_utils-ci-pr_any-resolute-amd64
+      - gz_utils-ci-pr_any-homebrew-arm64
+      - gz_utils-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_utils-pr-clowin
+  - branch: gz-utils[0-2]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu Jammy CI
+      - gz_utils-ci-pr_any-jammy-amd64
+      - gz_utils-ci-pr_any-homebrew-arm64
+      - gz_utils-pr-clowin
+      - gz_utils-abichecker-any_to_any-ubuntu-jammy-amd64
+  - branch: gz-utils[4-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - gz_utils-ci-pr_any-resolute-amd64
+      - gz_utils-abichecker-any_to_any-ubuntu-resolute-amd64
+      - gz_utils-pr-cnlwin
+      - gz_utils-ci-pr_any-homebrew-arm64
+  - branch: ign-utils[0-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - Ubuntu Jammy CI
+      - DCO
+      - gz_utils-ci-pr_any-homebrew-arm64
+      - gz_utils-ci-pr_any-jammy-amd64
+      - gz_utils-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_utils-pr-clwin
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - gz_utils-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - Ubuntu resolute CI
+      - gz_utils-pr-cnlwin
+      - gz_utils-ci-pr_any-homebrew-arm64
+- name: sdformat
+  branches:
+  - branch: main
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - sdformat-ci-pr_any-resolute-amd64
+      - Validate package.xml
+      - sdformat-pr-cnlwin
+      - sdformat-ci-pr_any-homebrew-arm64
+  - branch: sdf14
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - sdformat-ci-pr_any-jammy-amd64
+      - Ubuntu Jammy CI
+      - build
+      - sdformat-abichecker-any_to_any-ubuntu-jammy-amd64
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - sdformat-ci-pr_any-homebrew-arm64
+  - branch: sdf15
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - sdformat-ci-pr_any-resolute-amd64
+      - sdformat-abichecker-any_to_any-ubuntu-resolute-amd64
+      - Ubuntu Jammy CI
+      - build
+      - test / matrix-prep-bazelversion
+      - sdformat-pr-clowin
+      - sdformat-ci-pr_any-homebrew-arm64
+  - branch: sdf1[0-3]
+    required_status_checks:
+      strict: true
+      contexts:
+      - build
+      - DCO
+      - Ubuntu Jammy CI
+      - sdformat-ci-pr_any-homebrew-arm64
+      - sdformat-pr-clwin
+      - sdformat-ci-pr_any-jammy-amd64
+      - sdformat-abichecker-any_to_any-ubuntu-jammy-amd64
+  - branch: sdf[1-9][6-9]
+    required_status_checks:
+      strict: true
+      contexts:
+      - DCO
+      - Ubuntu resolute CI
+      - Validate package.xml
+      - sdformat-ci-pr_any-resolute-amd64
+      - sdformat-abichecker-any_to_any-ubuntu-resolute-amd64
+      - build
+      - test / matrix-prep-bazelversion
+      - sdformat-pr-cnlwin
+      - sdformat-ci-pr_any-homebrew-arm64
