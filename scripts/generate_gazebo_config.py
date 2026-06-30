@@ -5,6 +5,7 @@ a YAML configuration with their branches and branch protection rules.
 """
 
 import base64
+import fnmatch
 import json
 import subprocess
 import sys
@@ -22,19 +23,18 @@ RELEASE_TOOLS_REPO = "gazebo-tooling/release-tools"
 GZ_COLLECTIONS_PATH = "jenkins-scripts/dsl/gz-collections.yaml"
 
 
-def _translate_status_checks(protection: Dict):
-    """API -> config for required_status_checks; None if not set."""
-    status_checks = protection.get("required_status_checks")
-    if not status_checks:
+def _translate_status_checks(rule: Dict):
+    """GraphQL rule -> config for required_status_checks; None if not required."""
+    if not rule.get("requiresStatusChecks"):
         return None
     return {
-        "strict": status_checks.get("strict", False),
-        "contexts": status_checks.get("contexts", []),
+        "strict": rule.get("requiresStrictStatusChecks", False),
+        "contexts": rule.get("contexts", []),
     }
 
 
 # Branch-protection fields to keep in the generated config, mapped to their
-# GitHub-API -> config translator. The keys are the allowlist: anything not
+# GraphQL-rule -> config translator. The keys are the allowlist: anything not
 # listed here is discarded so Terraform leaves it unchanged (see lifecycle
 # ignore_changes in branch_protection.tf). To manage another field, add a
 # translator entry here AND remove that field from the ignore_changes list.
@@ -204,53 +204,76 @@ def check_repo_exists(repo_name: str) -> bool:
     return bool(result)
 
 
-def check_branch_exists(repo_name: str, branch: str) -> bool:
-    """Check if a branch exists in a repository."""
-    result = run_command([
-        "gh", "api",
-        f"repos/{GITHUB_ORG}/{repo_name}/branches/{branch}",
-        "-q", ".name"
-    ], check=False)
-    return bool(result)
+def fetch_branch_protection_rules(repo_name: str) -> List[Dict]:
+    """Fetch all branch-protection *rules* for a repository via GraphQL.
 
-
-def get_branch_protection(repo_name: str, branch: str) -> Dict:
-    """Fetch branch protection rules for a repository branch."""
-    print(f"  Fetching protection rules for {repo_name}:{branch}...")
-    
-    output = run_command([
-        "gh", "api",
-        f"repos/{GITHUB_ORG}/{repo_name}/branches/{branch}/protection"
-    ], check=False)
-    
-    if not output:
-        print(f"    No protection rules found")
-        return {}
-    
-    try:
-        return json.loads(output)
-    except json.JSONDecodeError:
-        print(f"    Failed to parse protection rules")
-        return {}
-
-
-def protection_to_config(protection: Dict, branch: str) -> Dict:
-    """Convert GitHub API protection response to configuration dict.
-
-    Only the fields registered in PROTECTION_FIELD_TRANSLATORS are kept; every
-    other protection setting fetched from GitHub is discarded so Terraform
-    leaves it unchanged.
+    GitHub stores branch protection as pattern rules (e.g. ``gz-common[7-9]``)
+    that can match many branches; it is not one rule per concrete branch.
+    Terraform's ``github_branch_protection`` matches rules by their exact
+    pattern string, so the generated config must use the real rule patterns.
+    (The REST ``/branches/<branch>/protection`` endpoint only returns the
+    *effective* protection for a concrete branch, whose name usually does not
+    equal the governing rule pattern -- which is why importing by branch name
+    failed.)
     """
-    if not protection:
-        return {}
+    query = """
+    query($owner:String!,$name:String!){
+      repository(owner:$owner,name:$name){
+        branchProtectionRules(first:100){
+          nodes{
+            pattern
+            requiresStatusChecks
+            requiresStrictStatusChecks
+            requiredStatusChecks{ context }
+          }
+        }
+      }
+    }
+    """
+    output = run_command([
+        "gh", "api", "graphql",
+        "-f", f"query={query}",
+        "-F", f"owner={GITHUB_ORG}",
+        "-F", f"name={repo_name}",
+    ], check=False)
 
-    config = {"branch": branch}
+    if not output:
+        return []
+
+    try:
+        data = json.loads(output)
+    except json.JSONDecodeError:
+        print(f"    Failed to parse branch protection rules for {repo_name}")
+        return []
+
+    repo = (data.get("data") or {}).get("repository") or {}
+    nodes = (repo.get("branchProtectionRules") or {}).get("nodes") or []
+
+    rules = []
+    for node in nodes:
+        rules.append({
+            "pattern": node["pattern"],
+            "requiresStatusChecks": node.get("requiresStatusChecks", False),
+            "requiresStrictStatusChecks": node.get("requiresStrictStatusChecks", False),
+            "contexts": [c["context"] for c in (node.get("requiredStatusChecks") or [])],
+        })
+    return rules
+
+
+def rule_to_config(rule: Dict) -> Dict:
+    """Convert a branch-protection rule to a config entry keyed by its pattern.
+
+    Only the fields registered in PROTECTION_FIELD_TRANSLATORS are kept; a rule
+    with none of them is dropped (returns ``{}``). The ``branch`` key holds the
+    rule *pattern*, which is also the Terraform import id (``<repo>:<pattern>``).
+    """
+    config = {"branch": rule["pattern"]}
     for field, translate in PROTECTION_FIELD_TRANSLATORS.items():
-        value = translate(protection)
+        value = translate(rule)
         if value is not None:
             config[field] = value
 
-    # Nothing interesting on this branch -> don't manage it.
+    # Nothing managed on this rule -> don't track it.
     if len(config) == 1:
         return {}
 
@@ -270,8 +293,10 @@ def generate_yaml_config(repos_config: Dict) -> str:
             "branches": []
         }
         
-        # Add branch protection configurations
-        for branch_config in repos_config[repo_name]:
+        # Add branch protection configurations (sorted by pattern for stable,
+        # diff-friendly output).
+        for branch_config in sorted(repos_config[repo_name],
+                                    key=lambda c: c["branch"]):
             if branch_config:  # Only add if there's actual protection config
                 repo_data["branches"].append(branch_config)
         
@@ -284,56 +309,63 @@ def main():
     """Main execution function."""
     print("=== Gazebo Repository Protection Rules Generator ===\n")
 
-    # Get all repositories with their branches from collection files
+    # Active (non-EOL) branches per repo, derived from the gazebodistro
+    # collection files. Used to keep only the protection rules that actually
+    # govern a branch we still care about.
     repos_with_branches = get_all_repositories_with_branches()
-    
+
     print("\n=== Fetching branch protection rules ===\n")
-    
+
     repos_config = {}
-    total_branches = 0
-    protected_branches = 0
-    
+    total_rules = 0
+    managed_rules = 0
+
     for repo_name in sorted(repos_with_branches.keys()):
         if not check_repo_exists(repo_name):
             print(f"Repository {repo_name} does not exist, skipping...")
             continue
-        
+
         print(f"Processing {repo_name}...")
         repos_config[repo_name] = []
-        
-        for branch in sorted(repos_with_branches[repo_name]):
-            total_branches += 1
-            
-            # Check if branch exists
-            if not check_branch_exists(repo_name, branch):
-                print(f"  Branch {branch} does not exist, skipping...")
+
+        active_branches = repos_with_branches[repo_name]
+        rules = fetch_branch_protection_rules(repo_name)
+
+        for rule in rules:
+            total_rules += 1
+            pattern = rule["pattern"]
+
+            # Keep a rule only if its pattern matches at least one active
+            # branch. EOL-only patterns (e.g. ign-common[0-2]) are dropped so
+            # Terraform never manages protection for retired distros.
+            if not any(fnmatch.fnmatchcase(b, pattern) for b in active_branches):
+                print(f"  Rule '{pattern}' governs no active branch, skipping...")
                 continue
-            
-            # Fetch protection rules
-            protection = get_branch_protection(repo_name, branch)
-            branch_config = protection_to_config(protection, branch)
-            
+
+            branch_config = rule_to_config(rule)
             if branch_config:
                 repos_config[repo_name].append(branch_config)
-                protected_branches += 1
-    
+                managed_rules += 1
+                print(f"  Managing rule '{pattern}'")
+
     print("\n=== Generating YAML configuration ===\n")
-    
+
     yaml_content = generate_yaml_config(repos_config)
-    
+
     output_file = Path("gazebo-repos-config.yaml")
     output_file.write_text(yaml_content)
-    
+
     print(f"✓ Generated {output_file}")
     print(f"✓ Processed {len(repos_config)} repositories")
-    print(f"✓ Checked {total_branches} branches")
-    print(f"✓ Found {protected_branches} branches with protection rules")
-    
+    print(f"✓ Inspected {total_rules} branch protection rules")
+    print(f"✓ Managing {managed_rules} rules (each matched an active branch)")
+
     print("\nConfiguration file generated successfully!")
     print("Next steps:")
     print(f"  1. Review the configuration: cat {output_file}")
-    print(f"  2. Apply with Terraform: terraform plan")
-    print(f"                           terraform apply")
+    print(f"  2. Import + plan with Terraform:")
+    print(f"       ./scripts/import-branch-protection.sh {output_file}")
+    print(f"       terraform plan")
 
 
 if __name__ == "__main__":

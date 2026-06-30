@@ -13,9 +13,6 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
-# Exclude the actual YAML config (may contain specific settings)
-gazebo-repos-config.yaml
-
 # Ignore override files as they are usually used to override resources locally
 override.tf
 override.tf.json
