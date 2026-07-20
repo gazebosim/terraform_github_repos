@@ -9,6 +9,7 @@ import fnmatch
 import json
 import subprocess
 import sys
+import time
 import yaml
 from pathlib import Path
 from typing import Dict, List, Set, Tuple
@@ -43,21 +44,60 @@ PROTECTION_FIELD_TRANSLATORS = {
 }
 
 
+# Substrings identifying a failure that is worth retrying. Anything else
+# (404, auth error, bad query) is a real answer and must not be retried.
+TRANSIENT_ERROR_MARKERS = (
+    "i/o timeout",
+    "error connecting",
+    "connection reset",
+    "connection refused",
+    "TLS handshake timeout",
+    "unexpected EOF",
+    "502 Bad Gateway",
+    "503 Service Unavailable",
+    "504 Gateway Timeout",
+)
+MAX_ATTEMPTS = 5
+
+
+def _is_transient(stderr: str) -> bool:
+    lowered = stderr.lower()
+    return any(marker.lower() in lowered for marker in TRANSIENT_ERROR_MARKERS)
+
+
+def run_gh(cmd: List[str], max_attempts: int = MAX_ATTEMPTS):
+    """Run a gh command, retrying transient network failures with backoff.
+
+    A full generation run makes hundreds of API calls, so an occasional
+    timeout is expected; without retries a single blip aborts everything.
+    Returns the CompletedProcess and lets the caller decide how to treat a
+    non-zero exit that survived every attempt.
+    """
+    for attempt in range(1, max_attempts + 1):
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode == 0 or not _is_transient(result.stderr):
+            return result
+        if attempt < max_attempts:
+            delay = 2 ** (attempt - 1)
+            first_line = result.stderr.strip().splitlines()[0]
+            print(f"    transient failure ({attempt}/{max_attempts}), "
+                  f"retrying in {delay}s: {first_line}")
+            time.sleep(delay)
+    return result
+
+
 def run_command(cmd: List[str], check=True) -> str:
     """Run a shell command and return its output."""
-    try:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            check=check
-        )
-        return result.stdout.strip()
-    except subprocess.CalledProcessError as e:
-        print(f"Error running command {' '.join(cmd)}: {e.stderr}", file=sys.stderr)
+    result = run_gh(cmd)
+    if result.returncode != 0:
+        print(f"Error running command {' '.join(cmd)}: {result.stderr}",
+              file=sys.stderr)
         if check:
-            raise
+            raise subprocess.CalledProcessError(
+                result.returncode, cmd, result.stdout, result.stderr
+            )
         return ""
+    return result.stdout.strip()
 
 
 def fetch_collection_files() -> List[str]:
@@ -195,13 +235,26 @@ def get_all_repositories_with_branches() -> Dict[str, Set[str]]:
 
 
 def check_repo_exists(repo_name: str) -> bool:
-    """Check if a repository exists in the GitHub organization."""
-    result = run_command([
-        "gh", "api",
-        f"repos/{GITHUB_ORG}/{repo_name}",
-        "-q", ".name"
-    ], check=False)
-    return bool(result)
+    """Check if a repository exists in the GitHub organization.
+
+    Only a genuine 404 counts as "does not exist". Any other failure
+    (timeout, 5xx, connection reset) aborts the run: treating it as a
+    missing repository would silently drop every protection rule for that
+    repo from the generated config, making the output non-deterministic.
+    """
+    result = run_gh(
+        ["gh", "api", f"repos/{GITHUB_ORG}/{repo_name}", "-q", ".name"]
+    )
+    if result.returncode == 0:
+        return True
+
+    if "404" in result.stderr or "Not Found" in result.stderr:
+        return False
+
+    raise RuntimeError(
+        f"Failed to check whether {GITHUB_ORG}/{repo_name} exists: "
+        f"{result.stderr.strip()}"
+    )
 
 
 def fetch_branch_protection_rules(repo_name: str) -> List[Dict]:
@@ -230,23 +283,36 @@ def fetch_branch_protection_rules(repo_name: str) -> List[Dict]:
       }
     }
     """
+    # Any failure aborts the run. Returning an empty rule list on a transient
+    # error would make the repository look unprotected and silently drop all
+    # of its rules from the generated config.
     output = run_command([
         "gh", "api", "graphql",
         "-f", f"query={query}",
         "-F", f"owner={GITHUB_ORG}",
         "-F", f"name={repo_name}",
-    ], check=False)
-
-    if not output:
-        return []
+    ])
 
     try:
         data = json.loads(output)
-    except json.JSONDecodeError:
-        print(f"    Failed to parse branch protection rules for {repo_name}")
-        return []
+    except json.JSONDecodeError as e:
+        raise RuntimeError(
+            f"Unparseable branch-protection response for {repo_name}: {e}"
+        ) from e
 
-    repo = (data.get("data") or {}).get("repository") or {}
+    if data.get("errors"):
+        raise RuntimeError(
+            f"GraphQL errors fetching branch protection for {repo_name}: "
+            f"{data['errors']}"
+        )
+
+    repo = (data.get("data") or {}).get("repository")
+    if repo is None:
+        raise RuntimeError(
+            f"GraphQL returned no repository object for "
+            f"{GITHUB_ORG}/{repo_name} (expected it to exist)"
+        )
+
     nodes = (repo.get("branchProtectionRules") or {}).get("nodes") or []
 
     rules = []
