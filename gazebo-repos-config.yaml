@@ -46,9 +46,9 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Resolute CI
       - Validate package.xml
-      - gz_cmake-ci-pr_any-noble-amd64
+      - gz_cmake-ci-pr_any-resolute-amd64
       - gz_cmake-pr-cnlwin
       - gz_cmake-ci-pr_any-homebrew-arm64
 - name: gz-common
@@ -99,8 +99,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - gz_common-ci-pr_any-noble-amd64
-      - Ubuntu Noble CI
+      - gz_common-ci-pr_any-resolute-amd64
+      - Ubuntu Resolute CI
       - Validate package.xml
       - gz_common-pr-cnlwin
       - gz_common-ci-pr_any-homebrew-arm64
@@ -139,8 +139,8 @@ repositories:
       contexts:
       - DCO
       - Validate package.xml
-      - gz_fuel_tools-ci-pr_any-noble-amd64
-      - Ubuntu Noble CI
+      - gz_fuel_tools-ci-pr_any-resolute-amd64
+      - Ubuntu Resolute CI
       - gz_fuel_tools-pr-cnlwin
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
 - name: gz-gui
@@ -182,7 +182,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - gz_gui-ci-pr_any-noble-amd64
+      - Ubuntu Resolute CI
+      - gz_gui-ci-pr_any-resolute-amd64
       - Validate package.xml
       - gz_gui-ci-pr_any-homebrew-arm64
 - name: gz-launch
@@ -263,8 +264,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
-      - gz_math-ci-pr_any-noble-amd64
+      - Ubuntu Resolute CI
+      - gz_math-ci-pr_any-resolute-amd64
       - Validate package.xml
       - gz_math-pr-cnlwin
       - gz_math-ci-pr_any-homebrew-arm64
@@ -311,8 +312,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
-      - gz_msgs-ci-pr_any-noble-amd64
+      - Ubuntu Resolute CI
+      - gz_msgs-ci-pr_any-resolute-amd64
       - Validate package.xml
       - gz_msgs-ci-pr_any-homebrew-arm64
 - name: gz-physics
@@ -363,8 +364,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - gz_physics-ci-pr_any-noble-amd64
-      - Ubuntu Noble CI
+      - gz_physics-ci-pr_any-resolute-amd64
+      - Ubuntu Resolute CI
       - Validate package.xml
       - gz_physics-pr-cnlwin
       - gz_physics-ci-pr_any-homebrew-arm64
@@ -418,8 +419,9 @@ repositories:
       strict: true
       contexts:
       - DCO
+      - Ubuntu Resolute CI
       - Validate package.xml
-      - gz_plugin-ci-pr_any-noble-amd64
+      - gz_plugin-ci-pr_any-resolute-amd64
       - gz_plugin-pr-cnlwin
       - gz_plugin-ci-pr_any-homebrew-arm64
 - name: gz-rendering
@@ -464,9 +466,10 @@ repositories:
       strict: true
       contexts:
       - DCO
+      - Ubuntu Resolute CI
       - Validate package.xml
       - gz_rendering-ci-pr_any-homebrew-arm64
-      - gz_rendering-ci-pr_any-noble-amd64
+      - gz_rendering-ci-pr_any-resolute-amd64
 - name: gz-sensors
   branches:
   - branch: gz-sensors1[0-9]
@@ -513,9 +516,9 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - gz_sensors-ci-pr_any-noble-amd64
+      - gz_sensors-ci-pr_any-resolute-amd64
       - Validate package.xml
-      - Ubuntu Noble CI
+      - Ubuntu Resolute CI
       - gz_sensors-ci-pr_any-homebrew-arm64
 - name: gz-sim
   branches:
@@ -560,9 +563,9 @@ repositories:
       strict: false
       contexts:
       - DCO
-      - gz_sim-ci-pr_any-noble-amd64
+      - gz_sim-ci-pr_any-resolute-amd64
       - Validate package.xml
-      - Ubuntu Noble CI
+      - Ubuntu Resolute CI
       - gz_sim-ci-pr_any-homebrew-arm64
 - name: gz-tools
   branches:
@@ -593,8 +596,9 @@ repositories:
       strict: true
       contexts:
       - DCO
+      - Ubuntu Resolute CI
       - Validate package.xml
-      - gz_tools-ci-pr_any-noble-amd64
+      - gz_tools-ci-pr_any-resolute-amd64
       - gz_tools-ci-pr_any-homebrew-arm64
 - name: gz-transport
   branches:
@@ -630,8 +634,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - gz_transport-ci-pr_any-noble-amd64
-      - Ubuntu Noble CI
+      - gz_transport-ci-pr_any-resolute-amd64
+      - Ubuntu Resolute CI
       - Validate package.xml
       - gz_transport-ci-pr_any-homebrew-arm64
 - name: gz-utils
@@ -684,9 +688,9 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - gz_utils-ci-pr_any-noble-amd64
+      - gz_utils-ci-pr_any-resolute-amd64
       - Validate package.xml
-      - Ubuntu Noble CI
+      - Ubuntu Resolute CI
       - gz_utils-pr-cnlwin
       - gz_utils-ci-pr_any-homebrew-arm64
 - name: sdformat
@@ -696,8 +700,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
-      - sdformat-ci-pr_any-noble-amd64
+      - Ubuntu Resolute CI
+      - sdformat-ci-pr_any-resolute-amd64
       - Validate package.xml
       - sdformat-pr-cnlwin
       - sdformat-ci-pr_any-homebrew-arm64
