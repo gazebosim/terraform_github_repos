@@ -126,8 +126,8 @@ github_organization: gazebosim  # GitHub org or username
 
 repositories:
   - name: gz-common              # Repository name
-    branches:                     # List of branches to protect
-      - branch: main              # Branch name/pattern
+    branches:                     # List of branch-protection rules
+      - branch: main              # Rule pattern (fnmatch; may be a glob, e.g. gz-common[7-9])
         required_status_checks:   # The only managed field
           strict: true
           contexts:
@@ -193,12 +193,19 @@ repositories:
 
 The Python script automatically:
 1. Fetches the active collections from release-tools' [`gz-collections.yaml`](https://github.com/gazebo-tooling/release-tools/blob/master/jenkins-scripts/dsl/gz-collections.yaml) and parses only the matching `collection-<name>.yaml` files from gazebodistro
-2. Extracts all `gz-*` and `sdformat` repositories with their branch versions
-3. Retrieves current branch protection rules from each repository branch
-4. Filters each branch down to the fields registered in
-   `PROTECTION_FIELD_TRANSLATORS` (currently just `required_status_checks`) and
-   drops branches that have none of them
-5. Generates `gazebo-repos-config.yaml` with the filtered configuration
+2. Extracts all `gz-*` and `sdformat` repositories and their active branch versions
+3. Enumerates each repository's actual branch-protection **rule patterns** via the
+   GitHub GraphQL API. GitHub stores protection as `fnmatch` pattern rules (e.g.
+   `gz-sim[7-9]`) that can cover several branches — there is *not* one rule per
+   branch, and the pattern rarely equals a concrete branch name. Terraform matches
+   rules by their exact pattern, so the config must use these patterns
+4. Keeps only the rules whose pattern matches at least one active branch (EOL-only
+   patterns such as `ign-common[0-2]` are dropped), then filters each rule down to
+   the fields registered in `PROTECTION_FIELD_TRANSLATORS` (currently just
+   `required_status_checks`) and drops rules that have none of them
+5. Generates `gazebo-repos-config.yaml` with one entry per kept rule pattern. The
+   `branch:` value is the rule **pattern**, which is also the Terraform import id
+   (`<repo>:<pattern>`)
 
 ### Manual Generation
 
