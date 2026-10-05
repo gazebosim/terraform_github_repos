@@ -400,7 +400,7 @@ repositories:
       - DCO
       - Ubuntu Focal CI
       - Ubuntu Jammy CI
-      - gz_plugin-pr-win
+      - gz_plugin-pr-clowin
       - gz_plugin-ci-pr_any-jammy-amd64
       - Validate package.xml
       - gz_plugin-abichecker-any_to_any-ubuntu-jammy-amd64
