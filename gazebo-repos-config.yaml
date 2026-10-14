@@ -558,6 +558,8 @@ repositories:
       contexts:
       - DCO
       - gz_sim-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_sim-ci-pr_any-jammy-amd64
+      - Ubuntu Jammy CI
   - branch: main
     required_status_checks:
       strict: false
