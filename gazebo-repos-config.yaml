@@ -8,7 +8,7 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Jammy CI
-      - gz_cmake-ci-pr_any-jammy-amd64
+      - gz_cmake-ci-pr_any-noble-amd64
       - Validate package.xml
       - gz_cmake-pr-clowin
       - gz_cmake-ci-pr_any-homebrew-arm64
@@ -58,9 +58,9 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Jammy CI
-      - gz_common-ci-pr_any-jammy-amd64
-      - gz_common-abichecker-any_to_any-ubuntu-jammy-amd64
+      - Ubuntu Noble CI
+      - gz_common-ci-pr_any-noble-amd64
+      - gz_common-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_common-pr-clowin
       - gz_common-ci-pr_any-homebrew-arm64
   - branch: gz-common6
@@ -121,7 +121,7 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Jammy CI
-      - gz_fuel_tools-ci-pr_any-jammy-amd64
+      - gz_fuel_tools-ci-pr_any-noble-amd64
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
   - branch: ign-fuel-tools[5-9]
     required_status_checks:
@@ -159,8 +159,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - gz_gui-abichecker-any_to_any-ubuntu-jammy-amd64
-      - gz_gui-ci-pr_any-jammy-amd64
+      - gz_gui-abichecker-any_to_any-ubuntu-noble-amd64
+      - gz_gui-ci-pr_any-noble-amd64
       - gz_gui-ci-pr_any-homebrew-arm64
   - branch: gz-gui9
     required_status_checks:
@@ -193,7 +193,7 @@ repositories:
       strict: false
       contexts:
       - DCO
-      - gz_launch-ci-pr_any-jammy-amd64
+      - gz_launch-ci-pr_any-noble-amd64
       - gz_launch-ci-pr_any-homebrew-arm64
   - branch: gz-launch[8-9]
     required_status_checks:
@@ -219,9 +219,8 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Jammy CI
-      - gz_math-ci-pr_any-jammy-amd64
-      - gz_math-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_math-ci-pr_any-noble-amd64
+      - gz_math-abichecker-any_to_any-ubuntu-noble-amd64
       - Validate package.xml
       - Ubuntu Noble CI
       - gz_math-pr-clowin
@@ -277,8 +276,8 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Jammy CI
-      - gz_msgs-ci-pr_any-jammy-amd64
-      - gz_msgs-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_msgs-ci-pr_any-noble-amd64
+      - gz_msgs-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_msgs-ci-pr_any-homebrew-arm64
       - gz_msgs-pr-clowin
   - branch: gz-msgs11
@@ -324,8 +323,8 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Jammy CI
-      - gz_physics-ci-pr_any-jammy-amd64
-      - gz_physics-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_physics-ci-pr_any-noble-amd64
+      - gz_physics-abichecker-any_to_any-ubuntu-noble-amd64
       - Validate package.xml
       - gz_physics-ci-pr_any-homebrew-arm64
   - branch: gz-physics8
@@ -401,9 +400,9 @@ repositories:
       - Ubuntu Focal CI
       - Ubuntu Jammy CI
       - gz_plugin-pr-clowin
-      - gz_plugin-ci-pr_any-jammy-amd64
+      - gz_plugin-ci-pr_any-noble-amd64
       - Validate package.xml
-      - gz_plugin-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_plugin-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_plugin-ci-pr_any-homebrew-arm64
   - branch: ign-plugin[0-9]
     required_status_checks:
@@ -442,8 +441,8 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Jammy CI
-      - gz_rendering-ci-pr_any-jammy-amd64
-      - gz_rendering-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_rendering-ci-pr_any-noble-amd64
+      - gz_rendering-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_rendering-ci-pr_any-homebrew-arm64
   - branch: gz-rendering[9]
     required_status_checks:
@@ -488,8 +487,8 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Jammy CI
-      - gz_sensors-ci-pr_any-jammy-amd64
-      - gz_sensors-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_sensors-ci-pr_any-noble-amd64
+      - gz_sensors-abichecker-any_to_any-ubuntu-noble-amd64
       - Validate package.xml
       - gz_sensors-ci-pr_any-homebrew-arm64
   - branch: gz-sensors[9]
@@ -537,9 +536,9 @@ repositories:
       strict: false
       contexts:
       - DCO
-      - gz_sim-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_sim-abichecker-any_to_any-ubuntu-noble-amd64
       - Ubuntu Jammy CI
-      - gz_sim-ci-pr_any-jammy-amd64
+      - gz_sim-ci-pr_any-noble-amd64
       - Validate package.xml
       - gz_sim-ci-pr_any-homebrew-arm64
   - branch: gz-sim9
@@ -576,8 +575,6 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Jammy CI
-      - gz_tools-ci-pr_any-jammy-amd64
       - gz_tools-pr-cnlwin
       - gz_tools-pr-clowin
       - gz_tools-ci-pr_any-noble-amd64
@@ -610,7 +607,7 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Jammy CI
-      - gz_transport-ci-pr_any-jammy-amd64
+      - gz_transport-ci-pr_any-noble-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
   - branch: gz-transport[0-9][4-9]
     required_status_checks:
@@ -660,10 +657,10 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Jammy CI
-      - gz_utils-ci-pr_any-jammy-amd64
+      - gz_utils-ci-pr_any-noble-amd64
       - gz_utils-ci-pr_any-homebrew-arm64
       - gz_utils-pr-clowin
-      - gz_utils-abichecker-any_to_any-ubuntu-jammy-amd64
+      - gz_utils-abichecker-any_to_any-ubuntu-noble-amd64
   - branch: gz-utils[4-9]
     required_status_checks:
       strict: true
@@ -712,10 +709,9 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - sdformat-ci-pr_any-jammy-amd64
-      - Ubuntu Jammy CI
+      - sdformat-ci-pr_any-noble-amd64
       - build
-      - sdformat-abichecker-any_to_any-ubuntu-jammy-amd64
+      - sdformat-abichecker-any_to_any-ubuntu-noble-amd64
       - Ubuntu Noble CI
       - Validate package.xml
       - sdformat-ci-pr_any-homebrew-arm64
