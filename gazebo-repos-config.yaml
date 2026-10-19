@@ -7,7 +7,7 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_cmake-ci-pr_any-noble-amd64
       - Validate package.xml
       - gz_cmake-pr-clowin
@@ -120,7 +120,7 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_fuel_tools-ci-pr_any-noble-amd64
       - gz_fuel_tools-ci-pr_any-homebrew-arm64
   - branch: ign-fuel-tools[5-9]
@@ -275,7 +275,7 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_msgs-ci-pr_any-noble-amd64
       - gz_msgs-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_msgs-ci-pr_any-homebrew-arm64
@@ -322,7 +322,7 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_physics-ci-pr_any-noble-amd64
       - gz_physics-abichecker-any_to_any-ubuntu-noble-amd64
       - Validate package.xml
@@ -398,7 +398,7 @@ repositories:
       contexts:
       - DCO
       - Ubuntu Focal CI
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_plugin-pr-clowin
       - gz_plugin-ci-pr_any-noble-amd64
       - Validate package.xml
@@ -440,7 +440,7 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_rendering-ci-pr_any-noble-amd64
       - gz_rendering-abichecker-any_to_any-ubuntu-noble-amd64
       - gz_rendering-ci-pr_any-homebrew-arm64
@@ -486,7 +486,7 @@ repositories:
       strict: false
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_sensors-ci-pr_any-noble-amd64
       - gz_sensors-abichecker-any_to_any-ubuntu-noble-amd64
       - Validate package.xml
@@ -537,7 +537,7 @@ repositories:
       contexts:
       - DCO
       - gz_sim-abichecker-any_to_any-ubuntu-noble-amd64
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_sim-ci-pr_any-noble-amd64
       - Validate package.xml
       - gz_sim-ci-pr_any-homebrew-arm64
@@ -606,7 +606,7 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_transport-ci-pr_any-noble-amd64
       - gz_transport-ci-pr_any-homebrew-arm64
   - branch: gz-transport[0-9][4-9]
@@ -656,7 +656,7 @@ repositories:
       strict: true
       contexts:
       - DCO
-      - Ubuntu Noble CI
+      - Ubuntu Jammy CI
       - gz_utils-ci-pr_any-noble-amd64
       - gz_utils-ci-pr_any-homebrew-arm64
       - gz_utils-pr-clowin
