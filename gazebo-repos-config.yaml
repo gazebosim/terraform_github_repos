@@ -159,6 +159,7 @@ repositories:
       strict: true
       contexts:
       - DCO
+      - Ubuntu Resolute CI
       - Validate package.xml
       - gz_gui-abichecker-any_to_any-ubuntu-resolute-amd64
       - gz_gui-ci-pr_any-resolute-amd64
